@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Foreveross on 2016/11/20.
+ * Created by ClownMonkey on 2016/11/20.
  */
 @Entity
 @Table(name = "messages")
@@ -52,10 +52,10 @@ public class Messages implements Serializable {
     }
 
     @Transient
-    private User school;
+    private User _user;
 
     @Transient
-    private Shop shopname;
+    private Shop _shop;
 
     @JsonProperty("userid")
     @Transient
@@ -96,21 +96,20 @@ public class Messages implements Serializable {
         this.shop = shop;
     }
 
-
-    public String getSchool() {
-        return user.getSchool();
+    public User get_user() {
+        return user;
     }
 
-    public void setSchool(User school) {
-        this.school = school;
+    public void set_user(User _user) {
+        this._user = _user;
     }
 
-    public String getShopname() {
-        return shop.getShopname();
+    public Shop get_shop() {
+        return shop;
     }
 
-    public void setShopname(Shop shopname) {
-        this.shopname = shopname;
+    public void set_shop(Shop _shop) {
+        this._shop = _shop;
     }
 
     public Integer getMessageid() {

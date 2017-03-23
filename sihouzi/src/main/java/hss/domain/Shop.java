@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.security.Timestamp;
 
 /**
- * Created by Foreveross on 2016/11/20.
+ * Created by ClownMonkey on 2016/11/20.
  */
 @Entity
 @Table(name = "shopinfo")
@@ -36,7 +36,7 @@ public class Shop implements Serializable {
     private String picture;
 
     @Column(name = "price")
-    private String price;
+    private Integer price;
 
     @Column(name = "shop_status")
     private String shop_status;
@@ -100,11 +100,11 @@ public class Shop implements Serializable {
         this.picture = picture;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -123,5 +123,18 @@ public class Shop implements Serializable {
     public void setPut_time(String put_time) {
         this.put_time = put_time;
     }
+
+//    public Shop(String shopname, String des, String userName, String userphne, String category, String picture, Integer price, String shop_status, String put_time) {
+//        this.shopname = shopname;
+//        this.des = des;
+//        this.userName = userName;
+//        this.userphne = userphne;
+//        this.category = category;
+//        this.picture = picture;
+//        this.price = price;
+//        this.shop_status = shop_status;
+//        this.put_time = put_time;
+//    }
+
 
 }

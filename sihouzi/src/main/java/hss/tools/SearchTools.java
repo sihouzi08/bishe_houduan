@@ -4,7 +4,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 
 /**
- * Created by 钟述林 393156105@qq.com on 2016/10/22 0:50.
+ * Created by ClownMonkey on 2016/10/22 0:50.
  */
 public class SearchTools {
 

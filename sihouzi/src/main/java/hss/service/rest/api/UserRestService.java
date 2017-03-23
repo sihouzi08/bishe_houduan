@@ -4,7 +4,7 @@ import com.foreveross.springboot.dubbo.utils.Payload;
 import hss.domain.User;
 
 /**
- * Created by Foreveross on 2016/11/19.
+ * Created by ClownMonkey on 2016/11/19.
  */
 public interface UserRestService {
     Payload updateUserById(Integer id, User user);

@@ -1,21 +1,20 @@
 package hss.service.rest;
 
-/**
- * Created by Foreveross on 2016/11/20.
- */
+
 
 import hss.domain.Shop;
 import hss.repository.ShopRepository;
 import hss.service.rest.api.ShopRestService;
 import hss.tools.BaseSearch;
 import hss.tools.SearchDto;
-import hss.tools.SearchTools;
+//import hss.tools.SearchTools;
 import hss.utils.ExcelUtil;
 import hss.utils.WebShopDtoAll;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,12 +30,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by Foreveross on 2016/11/19.
+ * Created by ClownMonkey on 2016/11/19.
+ *
+ * 1.做到查询分页筛选的API
+ *
+ * 2.做到修改状态的API
+ *
  */
 
 
 @RestController
-@RequestMapping(value = "/shop")     // 通过这里配置使下面的映射都在/users下
+@RequestMapping(value = "/shop")     // 通过这里配置使下面的映射都在/shop下
 @SpringBootApplication
 //
 //@Service("userRestService")
@@ -94,7 +98,8 @@ public class ShopRestServiceImpl implements ShopRestService {
 
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public Payload getUserListpage(){
+    public Payload getUserListpage(@QueryParam("page") @DefaultValue("0") int page,
+                                   @QueryParam("size") @DefaultValue("50") int size){
         Pageable pageable =new PageRequest(0, 5);
         Page<Shop> datas = shopRepository.findAll(new BaseSearch<Shop>(new SearchDto("shop_status","eq", 1)),pageable);
         System.out.println("总条数："+datas.getTotalElements());
@@ -113,20 +118,20 @@ public class ShopRestServiceImpl implements ShopRestService {
     public String test4() throws Exception {
         List<Shop> list1 =shopRepository.findAll();
         List<WebShopDtoAll> list = new ArrayList<WebShopDtoAll>();
-        list.add(new WebShopDtoAll(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
+//        list.add(new WebShopDtoAll(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
 
         for(Shop shop :list1){
             list.add(new WebShopDtoAll(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory(),shop.getPicture(),shop.getPrice(),shop.getShop_status(),shop.getPut_time()));
         }
 
-        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
-        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("title", "Shop信息表");
-        map.put("total", list.size()+" 条");
-        map.put("date", getDate());
+//        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
+//        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
+//        Map<String, String> map = new HashMap<String, String>();
+//        map.put("title", "Shop信息表");
+//        map.put("total", list.size()+" 条");
+//        map.put("date", getDate());
 
-                ExcelUtil.getInstance().exportObj2Excel( new FileOutputStream("/home/shop/"+"shop_test.xls"), list,WebShopDtoAll.class);
+        ExcelUtil.getInstance().exportObj2Excel( new FileOutputStream("/root/"+"shop_test.xls"), list,WebShopDtoAll.class);
 
         return "success";
 
@@ -146,7 +151,40 @@ public class ShopRestServiceImpl implements ShopRestService {
     }
 
 
+    @RequestMapping(value = "/newspage", method = RequestMethod.GET)
+    public Payload getShopPageList(@QueryParam("page") @DefaultValue("0") int page,
+                                    @QueryParam("size") @DefaultValue("50") int size,
+                                    @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort,
+                                @QueryParam("operation") @DefaultValue("operation=eq") String operation,
+                                @QueryParam("key") @DefaultValue("key=shop_status") String key,
+                                @QueryParam("value") @DefaultValue("1") String value) {
+        logger.debug("get roles: {} . -> {}", "GET /api/v1/roles/", sort);
 
+        // 简单适配, 暂无严谨性
+        sort = sort.replaceAll("sort=", "").trim(); // sort=firstname,desc
+        String[] sort_arr = sort.split(",");
+        Sort.Direction direction;
+        if (sort_arr[1] != null && "desc".equals(sort_arr[1])) {
+            direction = Sort.Direction.DESC;
+        } else {
+            direction = Sort.Direction.ASC;
+        }
+        String[] properties = sort_arr[0].split("&");
+
+        Sort _sort = new Sort(direction, Arrays.asList(properties));
+        Pageable pageable = new PageRequest(page, size, _sort);
+
+        if(StringUtils.isEmpty(key) || StringUtils.isEmpty(operation)  || StringUtils.isEmpty(value)){
+            logger.info("提示: key或者operation或者value为空 ");
+        }
+
+        if(!StringUtils.isEmpty(key) && !StringUtils.isEmpty(operation)  && !StringUtils.isEmpty(value)){
+            logger.info("提示: key并且operation并且value都不为空 ");
+            return new Payload(shopRepository.findAll(new BaseSearch<Shop>(new SearchDto(key,operation, value)),pageable));
+        }
+
+          return new Payload(shopRepository.findAll(pageable));
+    }
 
 
 
@@ -154,7 +192,7 @@ public class ShopRestServiceImpl implements ShopRestService {
     @RequestMapping(value = "/newpage", method = RequestMethod.GET)
     public Payload getDataGroupList(@QueryParam("page") @DefaultValue("0") int page,
                                     @QueryParam("size") @DefaultValue("50") int size,
-                                    @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort) {
+                                        @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort) {
         logger.debug("get roles: {} . -> {}", "GET /api/v1/roles/", sort);
 
         // 简单适配, 暂无严谨性
@@ -184,7 +222,6 @@ public class ShopRestServiceImpl implements ShopRestService {
     @ResponseBody
     public Payload createShop(@RequestBody Shop jsonObj) {
         Shop shop = new Shop();
-
         System.out.println("ooo" + currTime);
         shop.setShopid(jsonObj.getShopid());
         shop.setUserName(jsonObj.getUserName());

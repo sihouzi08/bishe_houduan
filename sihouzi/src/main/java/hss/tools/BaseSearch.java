@@ -8,7 +8,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- * Created by 钟述林 393156105@qq.com on 2016/10/21 17:16.
+ * Created by ClownMonkey on 2016/10/21 17:16.
  */
 public class BaseSearch<T> implements Specification<T> {
 

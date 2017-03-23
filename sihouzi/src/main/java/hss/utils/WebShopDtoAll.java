@@ -27,7 +27,7 @@ public class WebShopDtoAll {
     private String picture;
 
 
-    private String price;
+    private Integer price;
 
 
     private String shop_status;
@@ -91,10 +91,10 @@ public class WebShopDtoAll {
     }
 
     @ExcelResources(title="商品价格",order=8)
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -130,7 +130,7 @@ public class WebShopDtoAll {
                 '}';
     }
 
-    public WebShopDtoAll(Integer shopid, String shopname, String des, String userName, String userphne, String category, String picture, String price, String shop_status, String put_time) {
+    public WebShopDtoAll(Integer shopid, String shopname, String des, String userName, String userphne, String category, String picture, Integer price, String shop_status, String put_time) {
         this.shopid = shopid;
         this.shopname = shopname;
         this.des = des;
