@@ -1,5 +1,8 @@
 package hss.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -29,6 +32,86 @@ public class Messages implements Serializable {
 
     @Column(name = "Leave_status")
     private String Leave_status;
+
+    @ManyToOne
+    @JoinColumn(name = "shopid")
+    @JsonIgnore
+    private Shop shop;
+
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    @JsonIgnore
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Transient
+    private User school;
+
+    @Transient
+    private Shop shopname;
+
+    @JsonProperty("userid")
+    @Transient
+    private Integer userid;
+
+    public Integer getUserid() {
+            return user.getUserid();
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    @JsonProperty("shopid")
+    @Transient
+    private Integer shopid;//外键所属模块
+
+    public void setShopid(Integer shopid) {
+        this.shopid = shopid;
+    }
+
+
+
+    public Integer getShopid() {
+//        if (shopid == null) {
+//            return shopid;
+//        } else {
+            return shop.getShopid();
+//        }
+    }
+
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+
+    public String getSchool() {
+        return user.getSchool();
+    }
+
+    public void setSchool(User school) {
+        this.school = school;
+    }
+
+    public String getShopname() {
+        return shop.getShopname();
+    }
+
+    public void setShopname(Shop shopname) {
+        this.shopname = shopname;
+    }
 
     public Integer getMessageid() {
         return messageid;

@@ -7,6 +7,11 @@ package hss.service.rest;
 import hss.domain.Shop;
 import hss.repository.ShopRepository;
 import hss.service.rest.api.ShopRestService;
+import hss.tools.BaseSearch;
+import hss.tools.SearchDto;
+import hss.tools.SearchTools;
+import hss.utils.ExcelUtil;
+import hss.utils.WebShopDtoAll;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +26,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
-import java.util.Arrays;
-import java.util.Date;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Foreveross on 2016/11/19.
@@ -41,6 +47,7 @@ public class ShopRestServiceImpl implements ShopRestService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     String currTime = (new Date()).toLocaleString();
+
     @Autowired
     private ShopRepository shopRepository;
 
@@ -69,6 +76,17 @@ public class ShopRestServiceImpl implements ShopRestService {
         return new Payload(p);
     }
 
+
+    @RequestMapping(value = "/amendShop_status", method = RequestMethod.PUT)
+    @ResponseBody
+    public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("shop_status") String shop_status) {
+        Shop shop = shopRepository.findOne(id);
+        shop.setShop_status(shop_status);
+        shopRepository.save(shop);
+        return "success";
+    }
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Payload getShopList() {
         return new Payload(shopRepository.findAll());
@@ -78,15 +96,60 @@ public class ShopRestServiceImpl implements ShopRestService {
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public Payload getUserListpage(){
         Pageable pageable =new PageRequest(0, 5);
-        Page<Shop> datas = shopRepository.findAll(pageable);
+        Page<Shop> datas = shopRepository.findAll(new BaseSearch<Shop>(new SearchDto("shop_status","eq", 1)),pageable);
         System.out.println("总条数："+datas.getTotalElements());
         System.out.println("总页数："+datas.getTotalPages());
         for(Shop u : datas) {
             System.out.println(u.getShopid()+"====>"+u.getShopname());
         }
 
-        return new Payload(shopRepository.findAll(pageable));
+        return new Payload(shopRepository.findAll(new BaseSearch<Shop>(new SearchDto("shop_status","eq", 1)),pageable));
     }
+
+
+
+
+    @RequestMapping(value = "/file", method = RequestMethod.GET)
+    public String test4() throws Exception {
+        List<Shop> list1 =shopRepository.findAll();
+        List<WebShopDtoAll> list = new ArrayList<WebShopDtoAll>();
+        list.add(new WebShopDtoAll(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
+
+        for(Shop shop :list1){
+            list.add(new WebShopDtoAll(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory(),shop.getPicture(),shop.getPrice(),shop.getShop_status(),shop.getPut_time()));
+        }
+
+        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
+        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("title", "Shop信息表");
+        map.put("total", list.size()+" 条");
+        map.put("date", getDate());
+
+                ExcelUtil.getInstance().exportObj2Excel( new FileOutputStream("/home/shop/"+"shop_test.xls"), list,WebShopDtoAll.class);
+
+        return "success";
+
+    }
+
+    private String getDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        return sdf.format(new Date());
+    }
+
+
+    public static String Date2FileName(String nameFormat, String fileType) {
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(nameFormat);
+        String fileName = dateFormat.format(date) + fileType;
+        return fileName;
+    }
+
+
+
+
+
+
 
     @RequestMapping(value = "/newpage", method = RequestMethod.GET)
     public Payload getDataGroupList(@QueryParam("page") @DefaultValue("0") int page,
