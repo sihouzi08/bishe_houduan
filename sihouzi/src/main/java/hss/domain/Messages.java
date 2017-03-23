@@ -1,10 +1,13 @@
 package hss.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Foreveross on 2016/11/20.
+ * Created by ClownMonkey on 2016/11/20.
  */
 @Entity
 @Table(name = "messages")
@@ -29,6 +32,85 @@ public class Messages implements Serializable {
 
     @Column(name = "Leave_status")
     private String Leave_status;
+
+    @ManyToOne
+    @JoinColumn(name = "shopid")
+    @JsonIgnore
+    private Shop shop;
+
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    @JsonIgnore
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Transient
+    private User _user;
+
+    @Transient
+    private Shop _shop;
+
+    @JsonProperty("userid")
+    @Transient
+    private Integer userid;
+
+    public Integer getUserid() {
+            return user.getUserid();
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    @JsonProperty("shopid")
+    @Transient
+    private Integer shopid;//外键所属模块
+
+    public void setShopid(Integer shopid) {
+        this.shopid = shopid;
+    }
+
+
+
+    public Integer getShopid() {
+//        if (shopid == null) {
+//            return shopid;
+//        } else {
+            return shop.getShopid();
+//        }
+    }
+
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    public User get_user() {
+        return user;
+    }
+
+    public void set_user(User _user) {
+        this._user = _user;
+    }
+
+    public Shop get_shop() {
+        return shop;
+    }
+
+    public void set_shop(Shop _shop) {
+        this._shop = _shop;
+    }
 
     public Integer getMessageid() {
         return messageid;

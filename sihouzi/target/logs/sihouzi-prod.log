@@ -1,0 +1,594 @@
+2016-12-30 10:32:16 [main] INFO  hss.Application - Starting Application on Foreveross-PC with PID 5652 (started by Foreveross in C:\Users\Foreveross\IdeaProjects\sihouzi\target)
+2016-12-30 10:32:16 [main] INFO  hss.Application - The following profiles are active: prod
+2016-12-30 10:32:17 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/classes!/spring/services.xml]
+2016-12-30 10:32:17 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@537ae15b: startup date [Fri Dec 30 10:32:17 CST 2016]; root of context hierarchy
+2016-12-30 10:32:21 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ed1d4884] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-12-30 10:32:23 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8383 (http)
+2016-12-30 10:32:23 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2016-12-30 10:32:23 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.33
+2016-12-30 10:32:30 [localhost-startStop-1] INFO  o.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2016-12-30 10:32:31 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2016-12-30 10:32:31 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 13965 ms
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dubbox-dispatcherServlet' to [/api/*]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'statViewServlet' to [/druid/*]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-30 10:32:32 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'webStatFilter' to urls: [/*]
+2016-12-30 10:32:32 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@537ae15b: startup date [Fri Dec 30 10:32:17 CST 2016]; root of context hierarchy
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/hehe]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.hehe()
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.updateShopById(java.lang.Integer,hss.domain.Shop)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopList()
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getUserListpage()
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/file],methods=[GET]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.test4() throws java.lang.Exception
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/newpage],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getDataGroupList(int,int,java.lang.String)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopById(java.lang.Integer)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.createShop(hss.domain.Shop)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.deleteShopById(java.lang.Integer)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/hehe]}" onto public java.lang.String hss.service.rest.UserRestServiceImpl.hehe()
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserListpage()
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserById(java.lang.Integer)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.deleteUserById(java.lang.Integer)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.createUser(hss.domain.User)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.updateUserById(java.lang.Integer,hss.domain.User)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserList()
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-30 10:32:36 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-30 10:32:38 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 10:32:38 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 10:32:38 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 10:32:38 [main] WARN  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.foreveross.springboot.dubbo.autoconfigure.JsonDateSerializer.DATE_DEFAULT_PATTERN
+2016-12-30 10:32:39 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2016-12-30 10:32:39 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'druidDataSource' has been autodetected for JMX exposure
+2016-12-30 10:32:39 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'druidDataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=druidDataSource,type=DruidDataSource]
+2016-12-30 10:32:39 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8383 (http)
+2016-12-30 10:32:39 [main] INFO  hss.Application - Started Application in 23.522 seconds (JVM running for 24.589)
+2016-12-30 10:34:06 [http-nio-8383-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-30 10:34:06 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-30 10:34:08 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 2066 ms
+2016-12-30 10:34:09 [http-nio-8383-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: 读取模板不存在！请检查] with root cause
+java.lang.RuntimeException: 读取模板不存在！请检查
+	at hss.utils.ExcelTemplate.readTemplateByClasspath(ExcelTemplate.java:101)
+	at hss.utils.ExcelUtil.handlerObj2Excel(ExcelUtil.java:43)
+	at hss.utils.ExcelUtil.exportObj2ExcelByTemplate(ExcelUtil.java:93)
+	at hss.service.rest.ShopRestServiceImpl.test4(ShopRestServiceImpl.java:114)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:832)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:743)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:961)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:895)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:858)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:87)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1502)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1458)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2016-12-30 10:36:31 [http-nio-8383-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: 读取模板不存在！请检查] with root cause
+java.lang.RuntimeException: 读取模板不存在！请检查
+	at hss.utils.ExcelTemplate.readTemplateByClasspath(ExcelTemplate.java:101)
+	at hss.utils.ExcelUtil.handlerObj2Excel(ExcelUtil.java:43)
+	at hss.utils.ExcelUtil.exportObj2ExcelByTemplate(ExcelUtil.java:93)
+	at hss.service.rest.ShopRestServiceImpl.test4(ShopRestServiceImpl.java:114)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:832)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:743)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:961)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:895)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:858)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:87)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1502)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1458)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2016-12-30 11:06:32 [main] INFO  hss.Application - Starting Application on Foreveross-PC with PID 1744 (started by Foreveross in C:\Users\Foreveross\IdeaProjects\sihouzi\target)
+2016-12-30 11:06:32 [main] INFO  hss.Application - The following profiles are active: prod
+2016-12-30 11:06:32 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/classes!/spring/services.xml]
+2016-12-30 11:06:32 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2ebf3f59: startup date [Fri Dec 30 11:06:32 CST 2016]; root of context hierarchy
+2016-12-30 11:06:39 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$aa081382] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-12-30 11:06:41 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8383 (http)
+2016-12-30 11:06:42 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2016-12-30 11:06:42 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.33
+2016-12-30 11:06:48 [localhost-startStop-1] INFO  o.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2016-12-30 11:06:49 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2016-12-30 11:06:49 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 16474 ms
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dubbox-dispatcherServlet' to [/api/*]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'statViewServlet' to [/druid/*]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-30 11:06:50 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'webStatFilter' to urls: [/*]
+2016-12-30 11:06:51 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2ebf3f59: startup date [Fri Dec 30 11:06:32 CST 2016]; root of context hierarchy
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/hehe]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.hehe()
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.updateShopById(java.lang.Integer,hss.domain.Shop)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopList()
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getUserListpage()
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/file],methods=[GET]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.test4() throws java.lang.Exception
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/newpage],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getDataGroupList(int,int,java.lang.String)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopById(java.lang.Integer)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.createShop(hss.domain.Shop)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.deleteShopById(java.lang.Integer)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/hehe]}" onto public java.lang.String hss.service.rest.UserRestServiceImpl.hehe()
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserListpage()
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserById(java.lang.Integer)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.deleteUserById(java.lang.Integer)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.createUser(hss.domain.User)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.updateUserById(java.lang.Integer,hss.domain.User)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserList()
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-30 11:06:55 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-30 11:06:57 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:06:57 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:06:57 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:06:57 [main] WARN  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.foreveross.springboot.dubbo.autoconfigure.JsonDateSerializer.DATE_DEFAULT_PATTERN
+2016-12-30 11:06:58 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2016-12-30 11:06:58 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'druidDataSource' has been autodetected for JMX exposure
+2016-12-30 11:06:58 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'druidDataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=druidDataSource,type=DruidDataSource]
+2016-12-30 11:06:58 [main] ERROR o.a.coyote.http11.Http11NioProtocol - Failed to start end point associated with ProtocolHandler ["http-nio-8383"]
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:340)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:773)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:473)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:986)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:147)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:239)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:194)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:151)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:293)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:141)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:118)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:766)
+	at org.springframework.boot.SpringApplication.createAndRefreshContext(SpringApplication.java:361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at hss.Application.main(Application.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54)
+	at java.lang.Thread.run(Unknown Source)
+2016-12-30 11:06:58 [main] ERROR o.a.catalina.core.StandardService - Failed to start connector [Connector[HTTP/1.1-8383]]
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-8383]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:153)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:239)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.addPreviouslyRemovedConnectors(TomcatEmbeddedServletContainer.java:194)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:151)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:293)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:141)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:118)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:766)
+	at org.springframework.boot.SpringApplication.createAndRefreshContext(SpringApplication.java:361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at hss.Application.main(Application.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.catalina.LifecycleException: service.getName(): "Tomcat";  Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:993)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:147)
+	... 17 common frames omitted
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:340)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:773)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:473)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:986)
+	... 18 common frames omitted
+2016-12-30 11:06:58 [main] INFO  o.a.catalina.core.StandardService - Stopping service Tomcat
+2016-12-30 11:06:58 [main] ERROR o.s.boot.SpringApplication - Application startup failed
+org.springframework.boot.context.embedded.EmbeddedServletContainerException: Unable to start embedded Tomcat servlet container
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:165)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.startEmbeddedServletContainer(EmbeddedWebApplicationContext.java:293)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.finishRefresh(EmbeddedWebApplicationContext.java:141)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:118)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:766)
+	at org.springframework.boot.SpringApplication.createAndRefreshContext(SpringApplication.java:361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at hss.Application.main(Application.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Tomcat connector in failed state
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.start(TomcatEmbeddedServletContainer.java:159)
+	... 14 common frames omitted
+2016-12-30 11:06:58 [main] INFO  o.s.b.l.ClasspathLoggingApplicationListener - Application failed to start with classpath: [file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/classes!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/activation-1.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/antlr-2.7.7.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/aopalliance-1.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/aspectjweaver-1.8.9.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/classmate-1.1.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-beanutils-1.9.3.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-codec-1.10.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-collections-3.2.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-collections4-4.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-io-2.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-lang3-3.4.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-logging-1.1.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/commons-pool-1.6.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/curator-client-2.5.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/curator-framework-2.5.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/dom4j-1.6.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/druid-1.0.15.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/dubbo-2.8.4.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/ecj-4.5.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/FastInfoset-1.2.12.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/fastjson-1.1.39.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/guava-16.0.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/h2-1.4.191.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/hamcrest-core-1.3.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/hibernate-commons-annotations-4.0.5.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/hibernate-core-4.3.11.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/hibernate-entitymanager-4.3.11.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/httpclient-4.5.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/httpcore-4.4.4.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/istack-commons-runtime-2.16.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-annotations-2.6.6.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-core-2.6.6.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-core-asl-1.9.12.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-databind-2.6.6.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-jaxrs-1.9.12.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-mapper-asl-1.9.12.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jackson-xc-1.9.12.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jandex-1.1.0.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/javassist-3.18.1-GA.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/javax.servlet-api-3.1.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/javax.transaction-api-1.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jaxb-api-2.2.7.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jaxb-core-2.2.7.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jaxb-impl-2.2.7.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jaxrs-api-3.0.7.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jboss-annotations-api_1.1_spec-1.0.1.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jboss-logging-3.3.0.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jboss-logging-annotations-1.2.0.Beta1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jcip-annotations-1.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jcl-over-slf4j-1.7.21.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jline-0.9.94.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jsr173_api-1.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jstl-1.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/jul-to-slf4j-1.7.21.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/junit-4.12.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/kryo-2.24.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/kryo-serializers-0.26.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/log4j-1.2.17.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/log4j-over-slf4j-1.7.21.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/logback-classic-1.1.7.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/logback-core-1.1.7.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/minlog-1.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/mysql-connector-java-6.0.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/netty-3.7.0.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/objenesis-2.1.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/okhttp-2.7.5.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/okio-1.6.0.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/poi-3.15.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/poi-scratchpad-3.15.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/resteasy-client-3.0.7.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/resteasy-jackson-provider-3.0.15.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/resteasy-jaxb-provider-3.0.16.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/resteasy-jaxrs-3.0.7.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/resteasy-netty-3.0.7.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/slf4j-api-1.7.21.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/snakeyaml-1.16.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-aop-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-aspects-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-beans-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-autoconfigure-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-aop-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-data-jpa-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-dubbox-2.3.2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-jdbc-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-logging-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-tomcat-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-validation-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-boot-starter-web-1.3.5.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-context-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-core-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-data-commons-1.11.4.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-data-jpa-1.9.4.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-expression-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-jdbc-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-orm-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-tx-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-web-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/spring-webmvc-4.2.6.RELEASE.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-embed-core-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-embed-el-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-embed-jasper-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-embed-logging-juli-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-embed-websocket-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-jdbc-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/tomcat-juli-8.0.33.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/validation-api-1.1.0.Final.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/xml-apis-1.0.b2.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/zkclient-0.9.jar!/, jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/lib/zookeeper-3.4.6.jar!/]
+2016-12-30 11:08:13 [main] INFO  hss.Application - Starting Application on Foreveross-PC with PID 6908 (started by Foreveross in C:\Users\Foreveross\IdeaProjects\sihouzi\target)
+2016-12-30 11:08:13 [main] INFO  hss.Application - The following profiles are active: prod
+2016-12-30 11:08:14 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/classes!/spring/services.xml]
+2016-12-30 11:08:14 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@48cbfb76: startup date [Fri Dec 30 11:08:14 CST 2016]; root of context hierarchy
+2016-12-30 11:08:19 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7f29924a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-12-30 11:08:20 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8383 (http)
+2016-12-30 11:08:20 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2016-12-30 11:08:20 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.33
+2016-12-30 11:08:27 [localhost-startStop-1] INFO  o.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2016-12-30 11:08:28 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2016-12-30 11:08:28 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 14153 ms
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dubbox-dispatcherServlet' to [/api/*]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'statViewServlet' to [/druid/*]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-30 11:08:29 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'webStatFilter' to urls: [/*]
+2016-12-30 11:08:30 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-12-30 11:08:32 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@48cbfb76: startup date [Fri Dec 30 11:08:14 CST 2016]; root of context hierarchy
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/hehe]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.hehe()
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.updateShopById(java.lang.Integer,hss.domain.Shop)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopList()
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getUserListpage()
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/file],methods=[GET]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.test4() throws java.lang.Exception
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/newpage],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getDataGroupList(int,int,java.lang.String)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopById(java.lang.Integer)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.createShop(hss.domain.Shop)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.deleteShopById(java.lang.Integer)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/hehe]}" onto public java.lang.String hss.service.rest.UserRestServiceImpl.hehe()
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserListpage()
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserById(java.lang.Integer)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.deleteUserById(java.lang.Integer)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.createUser(hss.domain.User)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.updateUserById(java.lang.Integer,hss.domain.User)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserList()
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-30 11:08:33 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-30 11:08:35 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:08:35 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:08:35 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:08:35 [main] WARN  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.foreveross.springboot.dubbo.autoconfigure.JsonDateSerializer.DATE_DEFAULT_PATTERN
+2016-12-30 11:08:36 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2016-12-30 11:08:36 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'druidDataSource' has been autodetected for JMX exposure
+2016-12-30 11:08:36 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'druidDataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=druidDataSource,type=DruidDataSource]
+2016-12-30 11:08:36 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8383 (http)
+2016-12-30 11:08:36 [main] INFO  hss.Application - Started Application in 23.462 seconds (JVM running for 24.573)
+2016-12-30 11:08:50 [http-nio-8383-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-30 11:08:50 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-30 11:08:52 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 2126 ms
+2016-12-30 11:08:53 [http-nio-8383-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: 读取模板不存在！请检查] with root cause
+java.lang.RuntimeException: 读取模板不存在！请检查
+	at hss.utils.ExcelTemplate.readTemplateByClasspath(ExcelTemplate.java:101)
+	at hss.utils.ExcelUtil.handlerObj2Excel(ExcelUtil.java:43)
+	at hss.utils.ExcelUtil.exportObj2ExcelByTemplate(ExcelUtil.java:93)
+	at hss.service.rest.ShopRestServiceImpl.test4(ShopRestServiceImpl.java:114)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:832)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:743)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:961)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:895)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:858)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:87)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1502)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1458)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2016-12-30 11:11:38 [Thread-3] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@48cbfb76: startup date [Fri Dec 30 11:08:14 CST 2016]; root of context hierarchy
+2016-12-30 11:11:39 [Thread-3] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2016-12-30 11:11:39 [Thread-3] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2016-12-30 11:11:39 [Thread-3] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2016-12-30 11:14:51 [main] INFO  hss.Application - Starting Application on Foreveross-PC with PID 3104 (started by Foreveross in C:\Users\Foreveross\IdeaProjects\sihouzi\target)
+2016-12-30 11:14:51 [main] INFO  hss.Application - The following profiles are active: prod
+2016-12-30 11:14:51 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.war!/WEB-INF/classes!/spring/services.xml]
+2016-12-30 11:14:51 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2ebf3f59: startup date [Fri Dec 30 11:14:51 CST 2016]; root of context hierarchy
+2016-12-30 11:14:55 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$34488732] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-12-30 11:14:57 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8383 (http)
+2016-12-30 11:14:57 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2016-12-30 11:14:57 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.33
+2016-12-30 11:15:03 [localhost-startStop-1] INFO  o.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2016-12-30 11:15:04 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2016-12-30 11:15:04 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 12609 ms
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dubbox-dispatcherServlet' to [/api/*]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'statViewServlet' to [/druid/*]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-30 11:15:05 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'webStatFilter' to urls: [/*]
+2016-12-30 11:15:06 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2ebf3f59: startup date [Fri Dec 30 11:14:51 CST 2016]; root of context hierarchy
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopById(java.lang.Integer)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.createShop(hss.domain.Shop)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.deleteShopById(java.lang.Integer)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/hehe]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.hehe()
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.updateShopById(java.lang.Integer,hss.domain.Shop)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopList()
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getUserListpage()
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/file],methods=[GET]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.test4() throws java.lang.Exception
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/newpage],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getDataGroupList(int,int,java.lang.String)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserById(java.lang.Integer)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.deleteUserById(java.lang.Integer)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.createUser(hss.domain.User)
+2016-12-30 11:15:09 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.updateUserById(java.lang.Integer,hss.domain.User)
+2016-12-30 11:15:10 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserList()
+2016-12-30 11:15:10 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/hehe]}" onto public java.lang.String hss.service.rest.UserRestServiceImpl.hehe()
+2016-12-30 11:15:10 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserListpage()
+2016-12-30 11:15:10 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-30 11:15:10 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-30 11:15:12 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:15:12 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:15:12 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 11:15:12 [main] WARN  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.foreveross.springboot.dubbo.autoconfigure.JsonDateSerializer.DATE_DEFAULT_PATTERN
+2016-12-30 11:15:12 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2016-12-30 11:15:12 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'druidDataSource' has been autodetected for JMX exposure
+2016-12-30 11:15:12 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'druidDataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=druidDataSource,type=DruidDataSource]
+2016-12-30 11:15:13 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8383 (http)
+2016-12-30 11:15:13 [main] INFO  hss.Application - Started Application in 22.378 seconds (JVM running for 23.515)
+2016-12-30 11:15:17 [http-nio-8383-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-30 11:15:17 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-30 11:15:20 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 2703 ms
+2016-12-30 11:15:21 [http-nio-8383-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: 读取模板不存在！请检查] with root cause
+java.lang.RuntimeException: 读取模板不存在！请检查
+	at hss.utils.ExcelTemplate.readTemplateByClasspath(ExcelTemplate.java:101)
+	at hss.utils.ExcelUtil.handlerObj2Excel(ExcelUtil.java:43)
+	at hss.utils.ExcelUtil.exportObj2ExcelByTemplate(ExcelUtil.java:93)
+	at hss.service.rest.ShopRestServiceImpl.test4(ShopRestServiceImpl.java:114)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:832)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:743)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:961)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:895)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:858)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:87)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:522)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1095)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:672)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1502)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1458)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2016-12-30 17:34:26 [main] INFO  hss.Application - Starting Application v1.0-SNAPSHOT on Foreveross-PC with PID 2268 (C:\Users\Foreveross\IdeaProjects\sihouzi\target\sihouzi-1.0-SNAPSHOT.jar started by Foreveross in C:\Users\Foreveross\IdeaProjects\sihouzi\target)
+2016-12-30 17:34:26 [main] INFO  hss.Application - The following profiles are active: prod
+2016-12-30 17:34:27 [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [jar:file:/C:/Users/Foreveross/IdeaProjects/sihouzi/target/sihouzi-1.0-SNAPSHOT.jar!/spring/services.xml]
+2016-12-30 17:34:27 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@361ddeeb: startup date [Fri Dec 30 17:34:27 CST 2016]; root of context hierarchy
+2016-12-30 17:34:33 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6725571c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-12-30 17:34:36 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8383 (http)
+2016-12-30 17:34:36 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2016-12-30 17:34:36 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.33
+2016-12-30 17:34:42 [localhost-startStop-1] INFO  o.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2016-12-30 17:34:43 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2016-12-30 17:34:43 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 15276 ms
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'dubbox-dispatcherServlet' to [/api/*]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.ServletRegistrationBean - Mapping servlet: 'statViewServlet' to [/druid/*]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-30 17:34:44 [localhost-startStop-1] INFO  o.s.b.c.e.FilterRegistrationBean - Mapping filter: 'webStatFilter' to urls: [/*]
+2016-12-30 17:34:44 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-12-30 17:34:46 [main] INFO  c.a.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@361ddeeb: startup date [Fri Dec 30 17:34:27 CST 2016]; root of context hierarchy
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/hehe]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.hehe()
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.updateShopById(java.lang.Integer,hss.domain.Shop)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopList()
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getUserListpage()
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/file],methods=[GET]}" onto public java.lang.String hss.service.rest.ShopRestServiceImpl.test4() throws java.lang.Exception
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/newpage],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getDataGroupList(int,int,java.lang.String)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.getShopById(java.lang.Integer)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.createShop(hss.domain.Shop)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/shop/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.ShopRestServiceImpl.deleteShopById(java.lang.Integer)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/hehe]}" onto public java.lang.String hss.service.rest.UserRestServiceImpl.hehe()
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/page],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserListpage()
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserById(java.lang.Integer)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/{id}],methods=[DELETE]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.deleteUserById(java.lang.Integer)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/add],methods=[POST]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.createUser(hss.domain.User)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/update/{id}],methods=[PUT]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.updateUserById(java.lang.Integer,hss.domain.User)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/users/],methods=[GET]}" onto public com.foreveross.springboot.dubbo.utils.Payload hss.service.rest.UserRestServiceImpl.getUserList()
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-30 17:34:49 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-30 17:34:51 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 17:34:51 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 17:34:51 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-30 17:34:51 [main] WARN  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.foreveross.springboot.dubbo.autoconfigure.JsonDateSerializer.DATE_DEFAULT_PATTERN
+2016-12-30 17:34:52 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2016-12-30 17:34:52 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'druidDataSource' has been autodetected for JMX exposure
+2016-12-30 17:34:52 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'druidDataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=druidDataSource,type=DruidDataSource]
+2016-12-30 17:34:52 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8383 (http)
+2016-12-30 17:34:52 [main] INFO  hss.Application - Started Application in 27.643 seconds (JVM running for 31.597)
+2016-12-30 17:35:11 [http-nio-8383-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-30 17:35:11 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-30 17:35:11 [http-nio-8383-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 32 ms
+2016-12-30 17:41:56 [Thread-3] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@361ddeeb: startup date [Fri Dec 30 17:34:27 CST 2016]; root of context hierarchy
+2016-12-30 17:41:56 [Thread-3] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2016-12-30 17:41:56 [Thread-3] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2016-12-30 17:41:56 [Thread-3] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2016-12-30 17:41:56 [Thread-3] INFO  c.a.druid.pool.DruidDataSource - {dataSource-1} closed
