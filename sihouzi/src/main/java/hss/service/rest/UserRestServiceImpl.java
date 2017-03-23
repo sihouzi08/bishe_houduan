@@ -97,7 +97,7 @@ public class UserRestServiceImpl implements UserRestService {
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fileName=" yy/MM/dd HH:mm:ss";
+        String fileName="yyyy-MM-dd HH:mm:ss";
         String fileType="_user.xls";
 
 //        StringBuilder fileName = new StringBuilder();

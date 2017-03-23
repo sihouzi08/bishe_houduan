@@ -141,7 +141,7 @@ public class ShopRestServiceImpl implements ShopRestService {
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-         String fileName=" yy/MM/dd HH:mm:ss";
+         String fileName="yyyy-MM-dd HH:mm:ss";
          String fileType="_shop";
         fileName = Date2FileName(fileName,fileType);
 //        StringBuilder fileName = new StringBuilder();
@@ -301,37 +301,5 @@ public class ShopRestServiceImpl implements ShopRestService {
         return new Payload(id);
     }
 
-//    @GET
-//    @Path("/")
-//    public Payload getUserList() {
-//        return new Payload(userRepository.findAll());
-//    }
-//
-//    @GET
-//    @Path("{id : \\d+}")
-//    public Payload getUserById(@PathParam("id") Integer id) {
-//        return new Payload(userRepository.findOne(id));
-//    }
-
-
-//    @POST
-//    @Path("/")
-//    public Payload createUser(@RequestBody User user) {
-//        User p = userRepository.save(user);
-//        return new Payload(p);
-//    }
-//
-//    @PUT
-//    @Path("{id : \\d+}")
-//    public Payload updateUserById(@PathParam("id") Integer id, User user) {
-//        return null;
-//    }
-//
-//    @DELETE
-//    @Path("{id : \\d+}")
-//    public Payload deleteUserById(@PathParam("id") Integer id) {
-//        userRepository.delete(id);
-//        return new Payload(id);
-//    }
 }
 

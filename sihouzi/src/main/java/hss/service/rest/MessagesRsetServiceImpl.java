@@ -98,8 +98,8 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fileName=" yy/MM/dd HH:mm:ss";
-        String fileType="_order.xls";
+        String fileName="yyyy-MM-dd HH:mm:ss";
+        String fileType="_messages.xls";
 
 //        StringBuilder fileName = new StringBuilder();
         //填充projects数据
