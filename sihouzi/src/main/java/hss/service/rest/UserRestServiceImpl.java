@@ -1,11 +1,13 @@
 package hss.service.rest;
 
 import com.alibaba.druid.util.StringUtils;
-import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
 import hss.repository.UserRepository;
 import hss.service.rest.api.UserRestService;
 import hss.tools.BaseSearch;
 import hss.tools.SearchDto;
+import hss.utils.ExcelUtil;
+import hss.utils.WebShopDto;
+import hss.utils.WebUserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +18,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static hss.service.rest.ShopRestServiceImpl.Date2FileName;
 
 /**
  * Created by ClownMonkey on 2016/11/19.
@@ -84,6 +92,61 @@ public class UserRestServiceImpl implements UserRestService {
         return new Payload(userRepository.findAll());
     }
 
+
+
+
+    @RequestMapping(value = "/file", method = RequestMethod.GET)
+    public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String fileName=" yy/MM/dd HH:mm:ss";
+        String fileType="_user.xls";
+
+//        StringBuilder fileName = new StringBuilder();
+        //填充projects数据
+        String _userstatus = null;
+        List<User> user_data_list =userRepository.findAll();
+        List<WebUserDto> list = new ArrayList<>();
+        for(User user :user_data_list){
+            if(user.getUserstatus()==0){
+                _userstatus = "拉黑用户";
+            }else if(user.getUserstatus()==1){
+                _userstatus = "正常用户";
+            }else {
+                _userstatus = "";
+            }
+            list.add(new WebUserDto(user.getUserid(),user.getUserName(),user.getPassword(),user.getEmail(),user.getSchool(),user.getCourt(),user.getProfessional(),_userstatus,user.getPhone()));
+        }
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+        ExcelUtil.getInstance().exportObj2Excel(os,list,WebUserDto.class);
+
+        byte[] content = os.toByteArray();
+        InputStream is = new ByteArrayInputStream(content);
+        // 设置response参数，可以打开下载页面
+        response.reset();
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment;filename="+ new String(Date2FileName(fileName,fileType).getBytes(), "iso-8859-1"));
+        ServletOutputStream out = response.getOutputStream();
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try {
+            bis = new BufferedInputStream(is);
+            bos = new BufferedOutputStream(out);
+            byte[] buff = new byte[2048];
+            int bytesRead;
+            // Simple read/write loop.
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                bos.write(buff, 0, bytesRead);
+            }
+        } catch (final IOException e) {
+            throw e;
+        } finally {
+            if (bis != null)
+                bis.close();
+            if (bos != null)
+                bos.close();
+        }
+        return null;
+    }
 
 
     @RequestMapping(value = "/amenduserstatus", method = RequestMethod.PUT)

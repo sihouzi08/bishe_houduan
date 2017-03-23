@@ -11,6 +11,9 @@ import hss.repository.UserRepository;
 import hss.service.rest.api.MessagesRsetService;
 import hss.tools.BaseSearch;
 import hss.tools.SearchDto;
+import hss.utils.ExcelUtil;
+import hss.utils.WebMessageDto;
+import hss.utils.WebOrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
@@ -20,9 +23,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import static hss.service.rest.ShopRestServiceImpl.Date2FileName;
 
 /**
  * Created by ClownMonkey on 2017/1/3.
@@ -46,7 +58,7 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
 
     @RequestMapping(value = "/amendmessages_status", method = RequestMethod.PUT)
     @ResponseBody
-    public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("messages_status") String messages_status) {
+    public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("messages_status") Integer messages_status) {
         Messages messages = messagesRepository.findOne(id);
         messages.setLeave_status(messages_status);
         messagesRepository.save(messages);
@@ -81,6 +93,67 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
         messagesRepository.save(messages);
         return new Payload(messages);
     }
+
+
+
+    @RequestMapping(value = "/file", method = RequestMethod.GET)
+    public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String fileName=" yy/MM/dd HH:mm:ss";
+        String fileType="_order.xls";
+
+//        StringBuilder fileName = new StringBuilder();
+        //填充projects数据
+        String messages_status = null;
+        List<Messages> messages_data_list =messagesRepository.findAll();
+        List<WebMessageDto> list = new ArrayList<>();
+        for(Messages messages :messages_data_list){
+            if(messages.getLeave_status()==1){
+                messages_status = "已经通过";
+            }else if(messages.getLeave_status()==0){
+                messages_status = "恶意评论";
+            }else {
+                messages_status = "";
+            }
+            list.add(new WebMessageDto(messages.getMessageid(),messages.get_shop().getShopname(),messages.get_user().getUserName(),messages.getContent(),messages.getLeave_time(),messages_status));
+        }
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+        ExcelUtil.getInstance().exportObj2Excel(os,list,WebMessageDto.class);
+
+        byte[] content = os.toByteArray();
+        InputStream is = new ByteArrayInputStream(content);
+        // 设置response参数，可以打开下载页面
+        response.reset();
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment;filename="+ new String(Date2FileName(fileName,fileType).getBytes(), "iso-8859-1"));
+        ServletOutputStream out = response.getOutputStream();
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try {
+            bis = new BufferedInputStream(is);
+            bos = new BufferedOutputStream(out);
+            byte[] buff = new byte[2048];
+            int bytesRead;
+            // Simple read/write loop.
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                bos.write(buff, 0, bytesRead);
+            }
+        } catch (final IOException e) {
+            throw e;
+        } finally {
+            if (bis != null)
+                bis.close();
+            if (bos != null)
+                bos.close();
+        }
+        return null;
+    }
+
+
+
+
+
+
 
 
     @RequestMapping(value = "/messagespage", method = RequestMethod.GET)//查找评论所有分页并具有筛选功能
