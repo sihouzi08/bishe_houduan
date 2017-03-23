@@ -12,7 +12,7 @@ import hss.tools.BaseSearch;
 import hss.tools.SearchDto;
 //import hss.tools.SearchTools;
 import hss.utils.ExcelUtil;
-import hss.utils.WebShopDtoAll;
+import hss.utils.WebShopDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,9 +26,12 @@ import com.foreveross.springboot.dubbo.utils.Payload;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -127,35 +130,6 @@ public class ShopRestServiceImpl implements ShopRestService {
 
 
 
-    @RequestMapping(value = "/file", method = RequestMethod.GET)
-    public String test4() throws Exception {
-        List<Shop> list1 =shopRepository.findAll();
-        List<WebShopDtoAll> list = new ArrayList<WebShopDtoAll>();
-//        list.add(new WebShopDtoAll(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
-
-        for(Shop shop :list1){
-            list.add(new WebShopDtoAll(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory_id(),shop.getPicture(),shop.getPrice(),shop.getShop_status()));
-        }
-
-//        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
-//        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("title", "Shop信息表");
-//        map.put("total", list.size()+" 条");
-//        map.put("date", getDate());
-
-        ExcelUtil.getInstance().exportObj2Excel( new FileOutputStream("/root/"+"shop_test.xls"), list,WebShopDtoAll.class);
-
-        return "success";
-
-    }
-
-    private String getDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
-        return sdf.format(new Date());
-    }
-
-
     public static String Date2FileName(String nameFormat, String fileType) {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat(nameFormat);
@@ -164,6 +138,76 @@ public class ShopRestServiceImpl implements ShopRestService {
     }
 
 
+
+    @RequestMapping(value = "/file", method = RequestMethod.GET)
+    public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+         String fileName=" yy/MM/dd HH:mm:ss";
+         String fileType="_shop";
+        fileName = Date2FileName(fileName,fileType);
+//        StringBuilder fileName = new StringBuilder();
+        //填充projects数据
+        String _category = null;
+        List<Shop> shop_data_list =shopRepository.findAll();
+        List<WebShopDto> list = new ArrayList<WebShopDto>();
+        for(Shop shop :shop_data_list){
+            if(shop.getCategory_id()==1){
+                _category = "运动";
+            }else if(shop.getCategory_id()==2){
+                _category = "电子";
+            }else if(shop.getCategory_id()==3){
+                _category = "书籍";
+            }else if(shop.getCategory_id()==4){
+                _category = "食物";
+            }else {
+                _category = "";
+            }
+            list.add(new WebShopDto(shop.getShopid(), shop.getShopname(), shop.getDes(), shop.getUserName(), shop.getUserphne(), _category, shop.getPicture(),shop.getPrice(), shop.getShop_status(),shop.getPut_time()));
+        }
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+        ExcelUtil.getInstance().exportObj2Excel(os,list,WebShopDto.class);
+
+        byte[] content = os.toByteArray();
+        InputStream is = new ByteArrayInputStream(content);
+        // 设置response参数，可以打开下载页面
+        response.reset();
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment;filename="+ new String((fileName + ".xls").getBytes(), "iso-8859-1"));
+        ServletOutputStream out = response.getOutputStream();
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try {
+            bis = new BufferedInputStream(is);
+            bos = new BufferedOutputStream(out);
+            byte[] buff = new byte[2048];
+            int bytesRead;
+            // Simple read/write loop.
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                bos.write(buff, 0, bytesRead);
+            }
+        } catch (final IOException e) {
+            throw e;
+        } finally {
+            if (bis != null)
+                bis.close();
+            if (bos != null)
+                bos.close();
+        }
+        return null;
+    }
+
+
+
+    /**
+     * shop分页
+     * @param page
+     * @param size
+     * @param sort
+     * @param operation
+     * @param key
+     * @param value
+     * @return
+     */
     @RequestMapping(value = "/newspage", method = RequestMethod.GET)
     public Payload getShopPageList(@QueryParam("page") @DefaultValue("0") int page,
                                     @QueryParam("size") @DefaultValue("50") int size,

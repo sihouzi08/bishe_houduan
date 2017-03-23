@@ -1,7 +1,7 @@
 package hss.utils;
 
 /**
- * Created by 钟述林 393156105@qq.com on 2016/10/29 0:14.
+ * Created by ClownMonkey 393156105@qq.com on 2016/10/29 0:14.
  */
 public class ExcelHeader implements Comparable<ExcelHeader>{
     /**

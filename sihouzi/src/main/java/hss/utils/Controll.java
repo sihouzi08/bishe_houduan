@@ -1,7 +1,7 @@
 //package hss.utils;
 //
 //import com.zslin.domain.Shop;
-//import com.zslin.dto.WebShopDtoAll;
+//import com.zslin.dto.WebShopDto;
 //import com.zslin.repository.ShopRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,24 +30,24 @@
 //    @RequestMapping(value = "/file", method = RequestMethod.GET)
 //    public String test4() throws Exception {
 //        List<Shop> list1 =shopRepository.findAll();
-//        List<WebShopDtoAll> list = new ArrayList<WebShopDtoAll>();
-//        list.add(new WebShopDtoAll(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
+//        List<WebShopDto> list = new ArrayList<WebShopDto>();
+//        list.add(new WebShopDto(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
 //
 //        for(Shop shop :list1){
-//            list.add(new WebShopDtoAll(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory(),shop.getPicture(),shop.getPrice(),shop.getShop_status(),shop.getPut_time()));
+//            list.add(new WebShopDto(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory(),shop.getPicture(),shop.getPrice(),shop.getShop_status(),shop.getPut_time()));
 //        }
 //
-//        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
-//        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
+//        list.add(new WebShopDto(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
+//        list.add(new WebShopDto(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
 //        Map<String, String> map = new HashMap<String, String>();
 //        map.put("title", "Shop信息表");
 //        map.put("total", list.size()+" 条");
 //        map.put("date", getDate());
 //
 ////        ExcelUtil.getInstance().exportObj2ExcelByTemplate(map, "shop-test.xls", new FileOutputStream("D:/temp/"+"shop_"+Date2FileName("yyyyMMdd_HHmmss" , ".xls")),
-////                list, WebShopDtoAll.class, true);
+////                list, WebShopDto.class, true);
 //
-//        ExcelUtil.getInstance().exportObj2Excel( new FileOutputStream("D:/temp/"+"shop_"+Date2FileName("yyyyMMdd_HHmmss" , ".xls")), list,WebShopDtoAll.class);
+//        ExcelUtil.getInstance().exportObj2Excel( new FileOutputStream("D:/temp/"+"shop_"+Date2FileName("yyyyMMdd_HHmmss" , ".xls")), list,WebShopDto.class);
 //
 //        return "success";
 //

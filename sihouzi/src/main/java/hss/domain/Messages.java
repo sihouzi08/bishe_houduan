@@ -31,7 +31,7 @@ public class Messages implements Serializable {
     private String Leave_time;
 
     @Column(name = "Leave_status")
-    private String Leave_status;
+    private Integer Leave_status;
 
     @ManyToOne
     @JoinColumn(name = "shopid")
@@ -156,11 +156,11 @@ public class Messages implements Serializable {
         Leave_time = leave_time;
     }
 
-    public String getLeave_status() {
+    public Integer getLeave_status() {
         return Leave_status;
     }
 
-    public void setLeave_status(String leave_status) {
+    public void setLeave_status(Integer leave_status) {
         Leave_status = leave_status;
     }
 }
