@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by ClownMonkey on 2016/11/15.
+ * 实体类user的jpa关联
  */
 
 @Repository

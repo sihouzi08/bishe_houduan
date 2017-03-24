@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Created by ClownMonkey on 2016/11/20.
+ * messages实体类映射数据库表messages
  */
 @Entity
 @Table(name = "messages")

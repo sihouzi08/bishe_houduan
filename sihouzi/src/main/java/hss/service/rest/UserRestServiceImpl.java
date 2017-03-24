@@ -35,6 +35,17 @@ import static hss.service.rest.ShopRestServiceImpl.Date2FileName;
 
 /**
  * Created by ClownMonkey on 2016/11/19.
+ *
+ * 1.做到查询分页筛选的API
+ *
+ * 2.做到修改状态的API
+ *
+ * 3.做到了根据id，username，查找user对象的API
+ *
+ * 4.做到了导出user对象的excel的API
+ *
+ * 5.删除增加的API，暂时没用
+ *
  */
 
 
@@ -49,12 +60,22 @@ public class UserRestServiceImpl implements UserRestService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * 测试方法 测试该url可执行
+     * @return
+     */
     @RequestMapping("/hehe")
     public String hehe() {
         return "现在时间：" + (new Date()).toLocaleString();
     }
 
 
+    /**
+     * 通过userid修改user对象，参数必须为user对象
+     * @param id
+     * @param jsonObj
+     * @return
+     */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public Payload updateUserById(@PathVariable Integer id, @RequestBody User jsonObj){
@@ -74,11 +95,18 @@ public class UserRestServiceImpl implements UserRestService {
         return new Payload(user);
     }
 
+    /**
+     * 获取所有user对象
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Payload getUserList(){
         return new Payload(userRepository.findAll());
     }
 
+    /*
+    分页尝试 后来没用这个
+     */
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public Payload getUserListpage(){
         Pageable pageable =new PageRequest(0, 5);
@@ -93,8 +121,14 @@ public class UserRestServiceImpl implements UserRestService {
     }
 
 
-
-
+    /**
+     *
+     * 导出shop数据表为excel文件
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String fileName="yyyy-MM-dd HH:mm:ss";
@@ -148,7 +182,12 @@ public class UserRestServiceImpl implements UserRestService {
         return null;
     }
 
-
+    /**
+     * 假删除操作 即是修改状态 0和1
+     * @param id
+     * @param userstatus
+     * @return
+     */
     @RequestMapping(value = "/amenduserstatus", method = RequestMethod.PUT)
     @ResponseBody
     public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("userstatus") int userstatus) {
@@ -158,7 +197,26 @@ public class UserRestServiceImpl implements UserRestService {
         return "success";
     }
 
+    /**
+     * 通过username查找一个user记录
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    public Payload getUserByUserName( @QueryParam("username") String username){
+        return new Payload(userRepository.findByUserName(username));
+    }
 
+    /**
+     * 带条件的分页获取user对象 一些参数非必须
+     * @param page
+     * @param size
+     * @param sort
+     * @param operation
+     * @param key
+     * @param value
+     * @return
+     */
     @RequestMapping(value = "/userspage", method = RequestMethod.GET)
     public Payload getGroupList(@QueryParam("page") @DefaultValue("0") int page,
                                 @QueryParam("size") @DefaultValue("50") int size,
@@ -194,12 +252,21 @@ public class UserRestServiceImpl implements UserRestService {
         return new Payload(userRepository.findAll(pageable));
     }
 
-
+    /**
+     * 通过一个id查找一条user对象记录
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Payload getUserById(@PathVariable Integer id){
         return new Payload(userRepository.findOne(id));
     }
 
+    /**
+     * 添加一个user对象 暂时没用到
+     * @param jsonObj
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Payload createUser(@RequestBody User jsonObj){
@@ -223,6 +290,11 @@ public class UserRestServiceImpl implements UserRestService {
 
     }
 
+    /**
+     * 通过id删除一个user对象
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Payload deleteUserById(@PathVariable Integer id){
         userRepository.delete(id);

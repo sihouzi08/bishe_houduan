@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 /**
  * Created by Foreveross on 2017/1/17.
+ * 种类实体类 方便操作 映射数据库表category
  */
 @Entity
 @Table(name = "category")

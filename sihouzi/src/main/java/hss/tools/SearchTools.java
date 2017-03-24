@@ -1,5 +1,6 @@
 package hss.tools;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 
@@ -42,4 +43,6 @@ public class SearchTools {
         speDtos = new SearchSpeDto(type, result);
         return speDtos;
     }
+
+
 }

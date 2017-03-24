@@ -37,6 +37,15 @@ import static hss.service.rest.ShopRestServiceImpl.Date2FileName;
 
 /**
  * Created by ClownMonkey on 2017/1/12.
+ *
+ * 1.做到查询分页筛选的API
+ *
+ * 2.做到修改状态的API
+ *
+ * 3.通过id修改order对象的API
+ *
+ * 4.做到了导出order对象的excel的API
+ *
  */
 @RestController
 @RequestMapping(value = "/order")     // 通过这里配置使下面的映射都在/order下
@@ -53,6 +62,9 @@ public class OrderRestServiceImpl implements OrderRestService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * 添加测试数据
+     */
     @RequestMapping(value = "/testAddOrder")
     public void testAddOrder() {
         int num=(int)(Math.random()*40)+10;
@@ -75,7 +87,12 @@ public class OrderRestServiceImpl implements OrderRestService {
         }
     }
 
-
+    /**
+     * 假删除 修改order状态 0和1
+     * @param id
+     * @param paystate
+     * @return
+     */
     @RequestMapping(value = "/amendpaystatus", method = RequestMethod.PUT)
     @ResponseBody
     public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("paystate") Integer paystate) {
@@ -85,6 +102,12 @@ public class OrderRestServiceImpl implements OrderRestService {
         return "success";
     }
 
+    /**
+     * 通过id修改order对象
+     * @param id
+     * @param jsonObj
+     * @return
+     */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)//根据id修改
     @ResponseBody
     public Payload updateShopById(@PathVariable Integer id, @RequestBody Order jsonObj) {
@@ -114,7 +137,13 @@ public class OrderRestServiceImpl implements OrderRestService {
     }
 
 
-
+    /**
+     * 导出order数据为order表
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String fileName="yyyy-MM-dd HH:mm:ss";
@@ -169,9 +198,16 @@ public class OrderRestServiceImpl implements OrderRestService {
     }
 
 
-
-
-
+    /**
+     * order带条件分页
+     * @param page
+     * @param size
+     * @param sort
+     * @param operation
+     * @param key
+     * @param value
+     * @return
+     */
     @RequestMapping(value = "/orderspage", method = RequestMethod.GET)
     public Payload getOrderPageList(@QueryParam("page") @DefaultValue("0") int page,
                                     @QueryParam("size") @DefaultValue("50") int size,

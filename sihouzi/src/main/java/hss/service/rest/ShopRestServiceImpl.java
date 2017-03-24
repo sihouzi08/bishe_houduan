@@ -42,6 +42,12 @@ import java.util.*;
  *
  * 2.做到修改状态的API
  *
+ * 3.做到了根据id，shopname，查找shop对象的API
+ *
+ * 4.做到了导出shop对象的excel的API
+ *
+ * 5.删除增加的API，暂时没用
+ *
  */
 
 
@@ -64,18 +70,25 @@ public class ShopRestServiceImpl implements ShopRestService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    //测试方法 测试该url可执行
     @RequestMapping("/hehe")
     public String hehe() {
         return "现在时间：" + (new Date()).toLocaleString();
     }
 
 
+    /**
+     * 通过id修改一条shop记录，参数必须为shop对象
+     * @param id
+     * @param jsonObj
+     * @return
+     */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public Payload updateShopById(@PathVariable Integer id, @RequestBody Shop jsonObj) {
         Shop shop = shopRepository.findOne(id);
         BeanHelper.mapPartOverrider(shop, jsonObj);
-        if (jsonObj.getCategory_id() != null) {
+        if (jsonObj.getCategory_id() != null) {//查找修改的外键存在不
             shop.setCategory_id(jsonObj.getCategory_id());
             Category category = categoryRepository.findOne(jsonObj.getCategory_id());
             shop.setCategory(category);
@@ -96,7 +109,12 @@ public class ShopRestServiceImpl implements ShopRestService {
         return new Payload(shop);
     }
 
-
+    /**
+     * 假删除操作 即是修改状态 0和1
+     * @param id
+     * @param shop_status
+     * @return
+     */
     @RequestMapping(value = "/amendShop_status", method = RequestMethod.PUT)
     @ResponseBody
     public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("shop_status") String shop_status) {
@@ -106,13 +124,31 @@ public class ShopRestServiceImpl implements ShopRestService {
         return "success";
     }
 
+    /**
+     * 通过shopname查找一条shop记录
+     * @param shopname
+     * @return
+     */
+    @RequestMapping(value = "/shopname", method = RequestMethod.GET)
+    public Payload getUserByShopname( @QueryParam("shopname") String shopname){
+        return new Payload(shopRepository.findByShopname(shopname));
+    }
 
+    /**
+     * 获取所有shop对象
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Payload getShopList() {
         return new Payload(shopRepository.findAll());
     }
 
-
+    /**
+     * 当初分页尝试的方法，带有条件，现在没用这个url
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public Payload getUserListpage(@QueryParam("page") @DefaultValue("0") int page,
                                    @QueryParam("size") @DefaultValue("50") int size){
@@ -128,8 +164,12 @@ public class ShopRestServiceImpl implements ShopRestService {
     }
 
 
-
-
+    /**
+     * 时间命文件名
+     * @param nameFormat
+     * @param fileType
+     * @return
+     */
     public static String Date2FileName(String nameFormat, String fileType) {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat(nameFormat);
@@ -138,7 +178,13 @@ public class ShopRestServiceImpl implements ShopRestService {
     }
 
 
-
+    /**
+     * 导出shop数据表为excel文件
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
          String fileName="yyyy-MM-dd HH:mm:ss";
@@ -244,8 +290,13 @@ public class ShopRestServiceImpl implements ShopRestService {
     }
 
 
-
-
+    /**
+     * 当初分页尝试 后来整合了一起，现在没用这个url
+     * @param page
+     * @param size
+     * @param sort
+     * @return
+     */
     @RequestMapping(value = "/newpage", method = RequestMethod.GET)
     public Payload getDataGroupList(@QueryParam("page") @DefaultValue("0") int page,
                                     @QueryParam("size") @DefaultValue("50") int size,
@@ -269,12 +320,21 @@ public class ShopRestServiceImpl implements ShopRestService {
     }
 
 
-
+    /**
+     * 通过id查找shop记录
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Payload getShopById(@PathVariable Integer id) {
         return new Payload(shopRepository.findOne(id));
     }
 
+    /**
+     * 添加一个shop记录 暂时没用这个url
+     * @param jsonObj
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Payload createShop(@RequestBody Shop jsonObj) {
@@ -295,6 +355,11 @@ public class ShopRestServiceImpl implements ShopRestService {
         return new Payload(p);
     }
 
+    /**
+     * 通过id删除一条shop记录
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Payload deleteShopById(@PathVariable Integer id) {
         shopRepository.delete(id);

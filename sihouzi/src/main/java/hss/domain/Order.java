@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Created by ClownMonkey on 2017/1/12.
+ * order实体类映射数据库
  */
 @Entity
 @Table(name = "orderinfo")

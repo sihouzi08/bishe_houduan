@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by ClownMonkey on 2016/11/15.
+ * 实体类映射数据库userinfo
+ * 对该类属性的操作即是对数据库的字段操作
  */
 @Entity
 @Table(name = "userinfo")

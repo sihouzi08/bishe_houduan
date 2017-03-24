@@ -37,7 +37,16 @@ import java.util.List;
 import static hss.service.rest.ShopRestServiceImpl.Date2FileName;
 
 /**
- * Created by ClownMonkey on 2017/1/3.
+ * Created by ClownMonkey on 2016/11/19.
+ *
+ * 1.做到查询分页筛选的API
+ *
+ * 2.做到修改状态的API
+ *
+ * 3.做到了根据id查找messages对象并修改的API
+ *
+ * 4.做到了导出shop对象的excel的API
+ *
  */
 
 @RestController
@@ -56,6 +65,12 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * 通过messagesid修改messages状态 0和1
+     * @param id
+     * @param messages_status
+     * @return
+     */
     @RequestMapping(value = "/amendmessages_status", method = RequestMethod.PUT)
     @ResponseBody
     public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("messages_status") Integer messages_status) {
@@ -65,7 +80,12 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
         return "success";
     }
 
-
+    /**
+     * 通过id修改messages对象 参数必须为messages对象
+     * @param id
+     * @param jsonObj
+     * @return
+     */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)//根据id修改
     @ResponseBody
     public Payload updateShopById(@PathVariable Integer id, @RequestBody Messages jsonObj) {
@@ -95,7 +115,13 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
     }
 
 
-
+    /**
+     * 导出messages数据到excel表
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String fileName="yyyy-MM-dd HH:mm:ss";
@@ -150,12 +176,16 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
     }
 
 
-
-
-
-
-
-
+    /**
+     * 带条件的分页查询获取messages对象
+     * @param page
+     * @param size
+     * @param sort
+     * @param operation
+     * @param key
+     * @param value
+     * @return
+     */
     @RequestMapping(value = "/messagespage", method = RequestMethod.GET)//查找评论所有分页并具有筛选功能
     public Payload getMessagesPageList(@QueryParam("page") @DefaultValue("0") int page,
                                 @QueryParam("size") @DefaultValue("50") int size,

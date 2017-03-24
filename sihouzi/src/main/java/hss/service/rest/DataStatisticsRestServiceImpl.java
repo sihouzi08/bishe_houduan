@@ -8,8 +8,14 @@ import hss.repository.OrderRepository;
 import hss.repository.ShopRepository;
 import hss.repository.UserRepository;
 import hss.service.rest.api.DataStatisticsRestService;
+import hss.tools.BaseSearch;
+import hss.tools.SearchDto;
+import hss.tools.SearchTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
-import java.util.ArrayList;
-
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static com.squareup.okhttp.internal.Internal.logger;
 
@@ -55,6 +58,7 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
         return new Payload(shopRepository.getShopPriceSum());
 //        return null;
     }
+
 
 
     @RequestMapping(value = "/getdata", method = RequestMethod.GET)
@@ -153,8 +157,9 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
     @RequestMapping(value = "/username2", method = RequestMethod.GET)
     public Payload getMessagesPageList(@QueryParam("username") @DefaultValue("username=侯圣燊") String username,
                                        @QueryParam("page") int page, @QueryParam("size") int size,
+                                       @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort,
                                        @QueryParam("shopname") @DefaultValue("shopname=单车") String shopname,
-                                       @QueryParam("category") @DefaultValue("shopname=运动") String category) {
+                                       @QueryParam("category") @DefaultValue("category=运动") String category) {
         List<Order> list = new ArrayList();
         if (!StringUtils.isEmpty(shopname) && StringUtils.isEmpty(username) && StringUtils.isEmpty(category)) {
             list = orderRepository.findByShopname(shopname);
@@ -188,11 +193,123 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
                 jdbcList.add(list.get(page * size + i));
             }
         }
+
+
+        if(!StringUtils.isEmpty(sort)){
+            sort = sort.replaceAll("sort=", "").trim(); // sort=firstname,desc
+            String[] sort_arr = sort.split(",");
+            logger.info("条件-->"+sort_arr[0]+"    "+"方式-->"+sort_arr[1]);
+
+
+            if(sort_arr[0].equals("moneySum")){
+
+                logger.info("条件moneySum-->"+sort_arr[0]);
+
+                if(sort_arr[1].equals("asc")){
+                    logger.info("方式顺序-->"+sort_arr[1]);
+                    Collections.sort(jdbcList, new Comparator<Order>() {
+                        @Override
+                        public int compare(Order order1, Order order2) {
+                            Integer id1 = order1.getMoneySum();
+                            Integer id2 = order2.getMoneySum();
+                            //可以按User对象的其他属性排序，只要属性支持compareTo方法
+                            return id1.compareTo(id2);
+                        }
+                    });
+                }
+                if(sort_arr[1].equals("desc")){
+                    logger.info("方式倒序-->"+sort_arr[1]);
+                    Collections.sort(jdbcList, new Comparator<Order>() {
+                        @Override
+                        public int compare(Order order1, Order order2) {
+                            Integer id1 = order1.getMoneySum();
+                            Integer id2 = order2.getMoneySum();
+                            //可以按User对象的其他属性排序，只要属性支持compareTo方法
+                            return id2.compareTo(id1);
+                        }
+                    });
+                }
+
+            }
+            if(sort_arr[0].equals("amount")){
+                logger.info("条件amount-->"+sort_arr[0]);
+                if(sort_arr[1].equals("asc")){
+                    logger.info("方式顺序-->"+sort_arr[1]);
+                    Collections.sort(jdbcList, new Comparator<Order>() {
+                        @Override
+                        public int compare(Order order1, Order order2) {
+                            Integer id1 = order1.getAmount();
+                            Integer id2 = order2.getAmount();
+                            //可以按User对象的其他属性排序，只要属性支持compareTo方法
+                            return id1.compareTo(id2);
+                        }
+                    });
+                }
+                if(sort_arr[1].equals("desc")){
+                    logger.info("方式倒序-->"+sort_arr[1]);
+                    Collections.sort(jdbcList, new Comparator<Order>() {
+                        @Override
+                        public int compare(Order order1, Order order2) {
+                            Integer id1 = order1.getAmount();
+                            Integer id2 = order2.getAmount();
+                            //可以按User对象的其他属性排序，只要属性支持compareTo方法
+                            return id2.compareTo(id1);
+                        }
+                    });
+                }
+            }
+        }
+
+
+
         pageDto.setContent(jdbcList);
 
         return new Payload(pageDto);
 
     }
+
+
+
+
+
+
+
+
+    @RequestMapping(value = "/date", method = RequestMethod.GET)
+    public Payload getOrdersPageListByDate(   @QueryParam("page") int page, @QueryParam("size") int size,
+                                              @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort,
+                                              @QueryParam("orderEndDateMin")  String orderEndDateMin,
+                                              @QueryParam("orderEndDateMax")  String orderEndDateMax) {
+
+
+        StringBuilder endtime = new StringBuilder();
+        StringBuilder starttime = new StringBuilder();
+        starttime.append(orderEndDateMin + " 00:00:00");
+        endtime.append(orderEndDateMax + " 12:00:00");
+
+        logger.info(sort);
+
+        // 简单适配, 暂无严谨性
+        sort = sort.replaceAll("sort=", "").trim(); // sort=firstname,desc
+        String[] sort_arr = sort.split(",");
+        Sort.Direction direction;
+        if (sort_arr[1] != null && "desc".equals(sort_arr[1])) {
+            direction = Sort.Direction.DESC;
+        } else {
+            direction = Sort.Direction.ASC;
+        }
+        String[] properties = sort_arr[0].split("&");
+
+        Sort _sort = new Sort(direction, Arrays.asList(properties));
+        Pageable pageable = new PageRequest(page, size, _sort);
+
+
+        return new Payload(orderRepository.findAll(SearchTools.buildSpecification(
+                SearchTools.buildSpeDto("and", new SearchDto("and", "ordertime", "gt", starttime.toString().trim())),
+                SearchTools.buildSpeDto("and", new SearchDto("ordertime", "lt", endtime.toString().trim()))),pageable));
+    }
+
+
 
     /**
      * 通过username 找 user shop messages  所有相关信息

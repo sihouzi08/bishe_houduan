@@ -9,6 +9,8 @@ import java.security.Timestamp;
 
 /**
  * Created by ClownMonkey on 2016/11/20.
+ * 实体类映射数据库shopinfo
+ * 对该类属性的操作即是对数据库的字段操作
  */
 @Entity
 @Table(name = "shopinfo")

@@ -10,10 +10,12 @@ import java.util.List;
 
 /**
  * Created by ClownMonkey on 2016/11/20.
+ * messages实体类关联jpa
  */
 @Repository
 public interface MessagesRepository extends JpaRepository<Messages, Integer>, JpaSpecificationExecutor<Messages>{
 
+    //自定义sql查询 通过username查找messages对象
     @Query(value ="select * from messages,userinfo,shopinfo where messages.userid=userinfo.userid and messages.shopid=shopinfo.shopid and userinfo.username = ?1", nativeQuery = true)
     List<Messages> findByUsername(String username);
 
