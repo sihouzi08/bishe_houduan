@@ -20,7 +20,7 @@ import java.util.Map;
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Integer> , JpaSpecificationExecutor<Shop> {
 
-
+    List<Shop> findByShopname(String shopname);
      @Query(value ="select sum(price) from Shopinfo ", nativeQuery = true)
      Integer getShopPriceSum();
 

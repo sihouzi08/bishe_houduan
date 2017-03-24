@@ -97,7 +97,7 @@ public class UserRestServiceImpl implements UserRestService {
 
     @RequestMapping(value = "/file", method = RequestMethod.GET)
     public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fileName=" yy/MM/dd HH:mm:ss";
+        String fileName="yyyy-MM-dd HH:mm:ss";
         String fileType="_user.xls";
 
 //        StringBuilder fileName = new StringBuilder();
@@ -157,7 +157,10 @@ public class UserRestServiceImpl implements UserRestService {
         userRepository.save(user);
         return "success";
     }
-
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    public Payload getUserByUserName( @QueryParam("username") String username){
+        return new Payload(userRepository.findByUserName(username));
+    }
 
     @RequestMapping(value = "/userspage", method = RequestMethod.GET)
     public Payload getGroupList(@QueryParam("page") @DefaultValue("0") int page,
