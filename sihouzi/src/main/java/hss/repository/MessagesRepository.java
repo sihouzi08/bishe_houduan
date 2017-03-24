@@ -19,4 +19,10 @@ public interface MessagesRepository extends JpaRepository<Messages, Integer>, Jp
     @Query(value ="select * from messages,userinfo,shopinfo where messages.userid=userinfo.userid and messages.shopid=shopinfo.shopid and userinfo.username = ?1", nativeQuery = true)
     List<Messages> findByUsername(String username);
 
+    @Query(value ="select * from messages,userinfo,shopinfo where messages.userid=userinfo.userid and messages.shopid=shopinfo.shopid and Shopinfo.Shopname = ?1", nativeQuery = true)
+    List<Messages> findByShopname(String shopname);
+
+    @Query(value ="select * from messages,userinfo,shopinfo where messages.userid=userinfo.userid and messages.shopid=shopinfo.shopid and category.category = ?1", nativeQuery = true)
+    List<Messages> findByCategory(String category);
+
 }

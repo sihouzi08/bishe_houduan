@@ -95,8 +95,8 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
                  if(i==11){
                      querysql[i]="select sum(moneysum) as " + month[i].toString().trim() + " from Shopinfo,Category,Orderinfo where Orderinfo.shopid=Shopinfo.shopid and Shopinfo.categoryid=Category.id and Orderinfo.ordertime between '2016-"+12+"-1 00:00:00' and '2016-"+12+"-31 00:00:00' and Category.category='"+_category[j]+"'";
                  }
-                 logger.info(querysql[i].toString().trim());
-                 logger.info(month[i].toString().trim());
+//                 logger.info(querysql[i].toString().trim());
+//                 logger.info(month[i].toString().trim());
                  if(count<13){
                      mapmonth1.add((HashMap<String, Object>) jdbcTemplate.queryForMap(querysql[i].toString().trim()));
                  }else if(count<25){
@@ -278,6 +278,7 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
     @RequestMapping(value = "/date", method = RequestMethod.GET)
     public Payload getOrdersPageListByDate(   @QueryParam("page") int page, @QueryParam("size") int size,
                                               @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort,
+                                              @QueryParam("field")  String field,
                                               @QueryParam("orderEndDateMin")  String orderEndDateMin,
                                               @QueryParam("orderEndDateMax")  String orderEndDateMax) {
 
@@ -303,7 +304,11 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
         Sort _sort = new Sort(direction, Arrays.asList(properties));
         Pageable pageable = new PageRequest(page, size, _sort);
 
-
+          if(field.equals("Leave_time")){
+              return new Payload(messagesRepository.findAll(SearchTools.buildSpecification(
+                      SearchTools.buildSpeDto("and", new SearchDto("and", "Leave_time", "gt", starttime.toString().trim())),
+                      SearchTools.buildSpeDto("and", new SearchDto("Leave_time", "lt", endtime.toString().trim()))),pageable));
+          }
         return new Payload(orderRepository.findAll(SearchTools.buildSpecification(
                 SearchTools.buildSpeDto("and", new SearchDto("and", "ordertime", "gt", starttime.toString().trim())),
                 SearchTools.buildSpeDto("and", new SearchDto("ordertime", "lt", endtime.toString().trim()))),pageable));
@@ -320,11 +325,22 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
      * @return
      */
     @RequestMapping(value = "/messagesusername", method = RequestMethod.GET)
-    public Payload getOrderPageList2(@QueryParam("username") @DefaultValue("username=侯圣燊") String username, @QueryParam("page") int page, @QueryParam("size") int size) {
+    public Payload getOrderPageList2(@QueryParam("username") @DefaultValue("username=侯圣燊") String username,
+                                     @QueryParam("page") int page, @QueryParam("size") int size,
+                                     @QueryParam("sort") @DefaultValue("sort=shopid,desc") String sort,
+                                     @QueryParam("shopname") @DefaultValue("shopname=单车") String shopname,
+                                     @QueryParam("category") @DefaultValue("category=运动") String category) {
 
         List<Messages> listmessages = new ArrayList();
-
-        listmessages = messagesRepository.findByUsername(username);
+        if (!StringUtils.isEmpty(shopname) && StringUtils.isEmpty(username) && StringUtils.isEmpty(category)) {
+            listmessages = messagesRepository.findByShopname(shopname);
+        } else if (!StringUtils.isEmpty(username) && StringUtils.isEmpty(shopname) && StringUtils.isEmpty(category)) {
+            listmessages = messagesRepository.findByUsername(username);
+        } else if (!StringUtils.isEmpty(category) && StringUtils.isEmpty(username) && StringUtils.isEmpty(shopname)) {
+            listmessages = messagesRepository.findAll();
+        } else {
+            logger.info("url出错");
+        }
         PageDto pageDto = new PageDto();
         pageDto.setTotalElements(listmessages.size());
         pageDto.setSize(size);
@@ -348,6 +364,48 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
                 jdbcList.add(listmessages.get(page * size + i));
             }
         }
+
+
+        if(!StringUtils.isEmpty(sort)){
+            sort = sort.replaceAll("sort=", "").trim(); // sort=firstname,desc
+            String[] sort_arr = sort.split(",");
+            logger.info("条件-->"+sort_arr[0]+"    "+"方式-->"+sort_arr[1]);
+
+
+            if(sort_arr[0].equals("Leave_time")){
+
+                logger.info("条件moneySum-->"+sort_arr[0]);
+
+                if(sort_arr[1].equals("asc")){
+                    logger.info("方式顺序-->"+sort_arr[1]);
+                    Collections.sort(jdbcList, new Comparator<Messages>() {
+                        @Override
+                        public int compare(Messages messages1, Messages messages2) {
+                            String id1 = String.valueOf(messages1.getContent());
+                            String id2 = String.valueOf(messages2.getContent());
+                            //可以按User对象的其他属性排序，只要属性支持compareTo方法
+                            return id1.compareTo(id2);
+                        }
+                    });
+                }
+                if(sort_arr[1].equals("desc")){
+                    logger.info("方式倒序-->"+sort_arr[1]);
+                    Collections.sort(jdbcList, new Comparator<Messages>() {
+                        @Override
+                        public int compare(Messages messages1, Messages messages2) {
+                            String id1 = String.valueOf(messages1.getContent());
+                            String id2 = String.valueOf(messages2.getContent());
+                            //可以按User对象的其他属性排序，只要属性支持compareTo方法
+                            return id2.compareTo(id1);
+                        }
+                    });
+                }
+
+            }
+        }
+
+
+
         pageDto.setContent(jdbcList);
 
         return new Payload(pageDto);
