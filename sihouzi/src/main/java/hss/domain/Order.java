@@ -54,19 +54,23 @@ public class Order implements Serializable {
     @Transient
     private User _user;
 
-    @JsonProperty("userid")
+//    @JsonProperty("user_id")
     @Transient
     private Integer userid;
 
     public Integer getUserid() {
-        return user.getUserid();
+        if(user == null){
+            return userid;
+        } else {
+            return user.getUserid();
+        }
     }
 
     public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
-    @JsonProperty("shopid")
+//    @JsonProperty("shop_id")
     @Transient
     private Integer shopid;//外键所属模块
 
@@ -135,7 +139,12 @@ public class Order implements Serializable {
     }
 
     public Integer getShopid() {
-        return shop.getShopid();
+        if(shop == null){
+            return shopid;
+        } else {
+            return shop.getShopid();
+        }
+
     }
 
     public void setShopid(Integer shopid) {

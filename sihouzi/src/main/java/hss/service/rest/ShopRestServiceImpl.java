@@ -2,7 +2,10 @@ package hss.service.rest;
 
 
 
+import com.foreveross.springboot.dubbo.utils.BeanHelper;
+import hss.domain.Category;
 import hss.domain.Shop;
+import hss.repository.CategoryRepository;
 import hss.repository.ShopRepository;
 import hss.service.rest.api.ShopRestService;
 import hss.tools.BaseSearch;
@@ -50,10 +53,13 @@ import java.util.*;
 public class ShopRestServiceImpl implements ShopRestService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    String currTime = (new Date()).toLocaleString();
+//    String currTime = (new Date()).toLocaleString();
 
     @Autowired
     private ShopRepository shopRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @RequestMapping("/hehe")
     public String hehe() {
@@ -64,20 +70,27 @@ public class ShopRestServiceImpl implements ShopRestService {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public Payload updateShopById(@PathVariable Integer id, @RequestBody Shop jsonObj) {
-        Shop shop = new Shop();
-        shop.setShopid(id);
+        Shop shop = shopRepository.findOne(id);
+        BeanHelper.mapPartOverrider(shop, jsonObj);
+        if (jsonObj.getCategory_id() != null) {
+            shop.setCategory_id(jsonObj.getCategory_id());
+            Category category = categoryRepository.findOne(jsonObj.getCategory_id());
+            shop.setCategory(category);
+        }
+
+//        shop.setShopid(id);
         shop.setUserName(jsonObj.getUserName());
         shop.setShopname(jsonObj.getShopname());
-        shop.setCategory(jsonObj.getCategory());
+
+//        shop.setCategoryid(jsonObj.getCategoryid());
         shop.setDes(jsonObj.getDes());
         shop.setUserphne(jsonObj.getUserphne());
         shop.setPicture(jsonObj.getPicture());
         shop.setPrice(jsonObj.getPrice());
-        shop.setPut_time(currTime);
+//        shop.setPut_time(currTime);
         shop.setShop_status(jsonObj.getShop_status());
-        System.out.print("" + jsonObj.getPut_time());
-        Shop p = shopRepository.save(shop);
-        return new Payload(p);
+        shopRepository.save(shop);
+        return new Payload(shop);
     }
 
 
@@ -121,7 +134,7 @@ public class ShopRestServiceImpl implements ShopRestService {
 //        list.add(new WebShopDtoAll(11,"权限系统", "com", "admin", "1221","权限系统","权限系统","权限系统","权限系统","权限系统"));
 
         for(Shop shop :list1){
-            list.add(new WebShopDtoAll(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory(),shop.getPicture(),shop.getPrice(),shop.getShop_status(),shop.getPut_time()));
+            list.add(new WebShopDtoAll(shop.getShopid(),shop.getShopname(),shop.getDes(),shop.getUserName(),shop.getUserphne(),shop.getCategory_id(),shop.getPicture(),shop.getPrice(),shop.getShop_status()));
         }
 
 //        list.add(new WebShopDtoAll(33,"校园网", "zslin", "admin", "2112","校园网","校园网","校园网","校园网","校园网" ));
@@ -222,7 +235,7 @@ public class ShopRestServiceImpl implements ShopRestService {
     @ResponseBody
     public Payload createShop(@RequestBody Shop jsonObj) {
         Shop shop = new Shop();
-        System.out.println("ooo" + currTime);
+//        System.out.println("ooo" + currTime);
         shop.setShopid(jsonObj.getShopid());
         shop.setUserName(jsonObj.getUserName());
         shop.setShopname(jsonObj.getShopname());
@@ -231,7 +244,7 @@ public class ShopRestServiceImpl implements ShopRestService {
         shop.setPicture(jsonObj.getPicture());
         shop.setUserphne(jsonObj.getUserphne());
         shop.setPrice(jsonObj.getPrice());
-        shop.setPut_time(currTime);
+//        shop.setPut_time(currTime);
         shop.setShop_status(jsonObj.getShop_status());
         System.out.print("" + jsonObj.getPut_time());
         Shop p = shopRepository.save(shop);

@@ -3,6 +3,7 @@ package hss.service.rest;
 import com.foreveross.springboot.dubbo.utils.Payload;
 import hss.domain.Order;
 import hss.domain.Shop;
+import hss.domain.User;
 import hss.repository.OrderRepository;
 import hss.repository.ShopRepository;
 import hss.repository.UserRepository;
@@ -42,20 +43,26 @@ public class OrderRestServiceImpl implements OrderRestService {
     @Autowired
     private ShopRepository shopRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @RequestMapping(value = "/testAddOrder")
     public void testAddOrder() {
+        int num=(int)(Math.random()*40)+10;
         for (Integer i = 0; i < 11; i++) {
             Order order = new Order();
-            order.setMoneySum(i * 5);
+            order.setMoneySum(num);
             order.setAmount(i + 3);
-            order.setShopid(i + 1);
+
             order.setUserid(i);
             if (i % 2 == 0) {
                 order.setPaystate(0);
                 order.setUserid(0);
+                order.setShopid(2);
             } else {
                 order.setPaystate(1);
                 order.setUserid(1);
+                order.setShopid(3);
             }
             orderRepository.save(order);
         }
@@ -74,16 +81,29 @@ public class OrderRestServiceImpl implements OrderRestService {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)//根据id修改
     @ResponseBody
     public Payload updateShopById(@PathVariable Integer id, @RequestBody Order jsonObj) {
-        Order order = new Order();
 
+        Order order = orderRepository.findOne(id);
+        if(order==null){
+            logger.info("url出错");
+            return new Payload("没找到这个id或者url出错");
+        }
+        if (jsonObj.getShopid() != null) {
+            order.setShopid(jsonObj.getShopid());
+            Shop shop = shopRepository.findOne(jsonObj.getShopid());
+            order.setShop(shop);
+        }
+        if (jsonObj.getUserid() != null) {
+            order.setUserid(jsonObj.getUserid());
+            User user = userRepository.findOne(jsonObj.getUserid());
+            order.setUser(user);
+        }
         order.setOrdertime(jsonObj.getOrdertime());
         order.setMoneySum(jsonObj.getMoneySum());
         order.setAmount(jsonObj.getAmount());
         order.setPaystate(jsonObj.getPaystate());
-        order.setUserid(jsonObj.getUserid());
-        order.setShopid(jsonObj.getShopid());
-        Order p = orderRepository.save(order);
-        return new Payload(p);
+
+        orderRepository.save(order);
+        return new Payload(order);
     }
 
 

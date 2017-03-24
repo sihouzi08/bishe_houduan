@@ -3,7 +3,11 @@ package hss.service.rest;
 import com.alibaba.druid.util.StringUtils;
 import com.foreveross.springboot.dubbo.utils.Payload;
 import hss.domain.Messages;
+import hss.domain.Shop;
+import hss.domain.User;
 import hss.repository.MessagesRepository;
+import hss.repository.ShopRepository;
+import hss.repository.UserRepository;
 import hss.service.rest.api.MessagesRsetService;
 import hss.tools.BaseSearch;
 import hss.tools.SearchDto;
@@ -32,6 +36,12 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
     @Autowired
     private MessagesRepository messagesRepository;
 
+    @Autowired
+    private ShopRepository shopRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/amendmessages_status", method = RequestMethod.PUT)
@@ -47,17 +57,29 @@ public class MessagesRsetServiceImpl implements MessagesRsetService {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)//根据id修改
     @ResponseBody
     public Payload updateShopById(@PathVariable Integer id, @RequestBody Messages jsonObj) {
-        Messages messages = new Messages();
-//        messages.setShopid(id);
+        Messages messages = messagesRepository.findOne(id);
+        if(messages==null){
+            logger.info("url出错");
+            return new Payload("没找到这个id或者url出错");
+        }
+        if (jsonObj.getShopid() != null) {
+            messages.setShopid(jsonObj.getShopid());
+            Shop shop = shopRepository.findOne(jsonObj.getShopid());
+            messages.setShop(shop);
+        }
+        if (jsonObj.getUserid() != null) {
+            messages.setUserid(jsonObj.getUserid());
+            User user = userRepository.findOne(jsonObj.getUserid());
+            messages.setUser(user);
+        }
         messages.setUserName(jsonObj.getUserName());
         messages.setContent(jsonObj.getContent());
         messages.setReceivename(jsonObj.getReceivename());
         messages.setLeave_time(jsonObj.getLeave_time());
         messages.setLeave_status(jsonObj.getLeave_status());
-        messages.setUserid(jsonObj.getUserid());
-        messages.setShopid(jsonObj.getShopid());
-        Messages p = messagesRepository.save(messages);
-        return new Payload(p);
+
+        messagesRepository.save(messages);
+        return new Payload(messages);
     }
 
 

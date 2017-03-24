@@ -50,8 +50,11 @@ public class UserRestServiceImpl implements UserRestService {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public Payload updateUserById(@PathVariable Integer id, @RequestBody User jsonObj){
-        User user = new User();
-        user.setUserid(id);
+        User user = userRepository.findOne(id);
+//        user.setUserid(id);
+        if(user==null){
+            logger.info("url出错");
+        }
         user.setUserName(jsonObj.getUserName());
         user.setPassword(jsonObj.getPassword());
         user.setEmail(jsonObj.getEmail());
@@ -59,9 +62,8 @@ public class UserRestServiceImpl implements UserRestService {
         user.setSchool(jsonObj.getSchool());
         user.setProfessional(jsonObj.getProfessional());
         user.setPhone(jsonObj.getPhone());
-        System.out.print(""+jsonObj.getProfessional());
-        User p = userRepository.save(user);
-        return new Payload(p);
+        userRepository.save(user);
+        return new Payload(user);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -80,6 +82,17 @@ public class UserRestServiceImpl implements UserRestService {
         }
 
         return new Payload(userRepository.findAll());
+    }
+
+
+
+    @RequestMapping(value = "/amenduserstatus", method = RequestMethod.PUT)
+    @ResponseBody
+    public String amendShop_statusById(@QueryParam("id") Integer id, @QueryParam("userstatus") int userstatus) {
+        User user = userRepository.findOne(id);
+        user.setUserstatus(userstatus);
+        userRepository.save(user);
+        return "success";
     }
 
 

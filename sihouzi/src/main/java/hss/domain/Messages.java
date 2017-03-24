@@ -57,19 +57,23 @@ public class Messages implements Serializable {
     @Transient
     private Shop _shop;
 
-    @JsonProperty("userid")
+//    @JsonProperty("user_id")
     @Transient
     private Integer userid;
 
     public Integer getUserid() {
+        if (user == null) {
+            return userid;
+        } else {
             return user.getUserid();
+        }
     }
 
     public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
-    @JsonProperty("shopid")
+//    @JsonProperty("shop_id")
     @Transient
     private Integer shopid;//外键所属模块
 
@@ -80,11 +84,11 @@ public class Messages implements Serializable {
 
 
     public Integer getShopid() {
-//        if (shopid == null) {
-//            return shopid;
-//        } else {
+        if ( shop == null) {
+            return shopid;
+        } else {
             return shop.getShopid();
-//        }
+        }
     }
 
 
