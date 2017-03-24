@@ -22,4 +22,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>, JpaSpeci
     @Query(value ="select * from orderinfo,userinfo,shopinfo where orderinfo.userid=userinfo.userid and orderinfo.shopid=shopinfo.shopid and Shopinfo.Shopname = ?1", nativeQuery = true)
     List<Order> findByShopname(String username);
 
+    @Query(value ="select * from orderinfo,userinfo,shopinfo,category where orderinfo.userid=userinfo.userid and orderinfo.shopid=shopinfo.shopid and shopinfo.categoryid=category.id and category.category = ?1", nativeQuery = true)
+    List<Order> findByCategory(String category);
+
 }

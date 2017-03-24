@@ -23,7 +23,16 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "userstatus")
+    private int userstatus;
 
+    public int getUserstatus() {
+        return userstatus;
+    }
+
+    public void setUserstatus(int userstatus) {
+        this.userstatus = userstatus;
+    }
 
     @Column(name = "email")
     private String email;

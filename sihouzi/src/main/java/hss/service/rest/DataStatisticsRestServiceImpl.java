@@ -8,7 +8,6 @@ import hss.repository.OrderRepository;
 import hss.repository.ShopRepository;
 import hss.repository.UserRepository;
 import hss.service.rest.api.DataStatisticsRestService;
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
-
 import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.List;
 
 import static com.squareup.okhttp.internal.Internal.logger;
@@ -66,16 +66,65 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
         querysql.append("select " + type + s.trim());
         logger.info("querysql--> " + querysql);
         return new Payload(jdbcTemplate.queryForMap(querysql.toString().trim()));
+
+    }
+
+    //eg:select sum(moneysum) as sum1 from Shopinfo,Category,Orderinfo where Orderinfo.shopid=Shopinfo.shopid and Shopinfo.categoryid=Category.id and Orderinfo.ordertime between '2017-1-11 00:00:00' and '2017-1-13 00:00:00'
+    @RequestMapping(value = "/getdatatest", method = RequestMethod.GET)
+    public Payload getDataTest(@QueryParam("category") @DefaultValue("category=食物") String category) {
+
+
+        HashMap<String, List<HashMap<String, Object>>> dimensions = new HashMap<String, List<HashMap<String, Object>>>();
+        List<HashMap<String, Object>> mapmonth1 = new ArrayList<>();
+        List<HashMap<String, Object>> mapmonth2 = new ArrayList<>();
+        List<HashMap<String, Object>> mapmonth3 = new ArrayList<>();
+        List<HashMap<String, Object>> mapmonth4 = new ArrayList<>();
+        String querysql[] = new String[12];
+        String month[] = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","_Dec"};
+        String _category[] = {"运动","电子","书籍","食物"};
+        int count=0;
+         for(int j=0;j<_category.length;j++){
+             for(int i=0;i<querysql.length;i++){
+                 count++;
+//eg:select sum(moneysum) as Feb from Shopinfo,Category,Orderinfo where Orderinfo.shopid=Shopinfo.shopid and Shopinfo.categoryid=Category.id and Orderinfo.ordertime between '2016-1-11 00:00:00' and '2017-1-13 00:00:00' and Category.category='食物'
+                 querysql[i]="select sum(moneysum) as " + month[i].toString().trim() + " from Shopinfo,Category,Orderinfo where Orderinfo.shopid=Shopinfo.shopid and Shopinfo.categoryid=Category.id and Orderinfo.ordertime between '2016-"+(i+1)+"-1 00:00:00' and '2016-"+(i+2)+"-1 00:00:00' and Category.category='"+_category[j]+"'";
+                 if(i==11){
+                     querysql[i]="select sum(moneysum) as " + month[i].toString().trim() + " from Shopinfo,Category,Orderinfo where Orderinfo.shopid=Shopinfo.shopid and Shopinfo.categoryid=Category.id and Orderinfo.ordertime between '2016-"+12+"-1 00:00:00' and '2016-"+12+"-31 00:00:00' and Category.category='"+_category[j]+"'";
+                 }
+                 logger.info(querysql[i].toString().trim());
+                 logger.info(month[i].toString().trim());
+                 if(count<13){
+                     mapmonth1.add((HashMap<String, Object>) jdbcTemplate.queryForMap(querysql[i].toString().trim()));
+                 }else if(count<25){
+                     mapmonth2.add((HashMap<String, Object>) jdbcTemplate.queryForMap(querysql[i].toString().trim()));
+                 }else if(count<37){
+                     mapmonth3.add((HashMap<String, Object>) jdbcTemplate.queryForMap(querysql[i].toString().trim()));
+                 }else if(count<49){
+                     mapmonth4.add((HashMap<String, Object>) jdbcTemplate.queryForMap(querysql[i].toString().trim()));
+                 }else {
+                     logger.info("出错");
+                 }
+             }
+
+         }
+        dimensions.put("yundong", mapmonth1);
+        dimensions.put("dianzi", mapmonth2);
+        dimensions.put("shuji", mapmonth3);
+        dimensions.put("shiwu", mapmonth4);
+//        }
+
+
+        return new Payload(dimensions);
     }
 
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
-    public Payload getOrderPageList(@QueryParam("username") @DefaultValue("username=侯圣燊") String username, @QueryParam("page")int page, @QueryParam("size")int size) {
+    public Payload getOrderPageList(@QueryParam("username") @DefaultValue("username=侯圣燊") String username, @QueryParam("page") int page, @QueryParam("size") int size) {
         List<Order> list = orderRepository.findByUsername(username);
         PageDto pageDto = new PageDto();
         pageDto.setTotalElements(list.size());
         StringBuilder contentsql = new StringBuilder();//select * from orderinfo,userinfo,shopinfo where orderinfo.userid=userinfo.userid and orderinfo.shopid=shopinfo.shopid and userinfo.username = ?1 order by orderid asc limit 0, 3
-        contentsql.append("select * from Orderinfo,Userinfo,Shopinfo where Orderinfo.userid=Userinfo.userid and Orderinfo.shopid=Shopinfo.shopid and Userinfo.username='" + username + "' limit "+ page * size);
+        contentsql.append("select * from Orderinfo,Userinfo,Shopinfo where Orderinfo.userid=Userinfo.userid and Orderinfo.shopid=Shopinfo.shopid and Userinfo.username='" + username + "' limit " + page * size);
         List jdbcList;
        /*
         page,size(1,5)
@@ -83,11 +132,12 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
         int o = page * size;//5
         (5,10)
        */
-        contentsql.append("," +(page * size + size));
+        contentsql.append("," + (page * size + size));
         logger.info("contentsql-->   " + contentsql);
 
         jdbcList = this.jdbcTemplate.queryForList(contentsql.toString().trim());
         pageDto.setContent(jdbcList);
+
 
         return new Payload(pageDto);
     }
@@ -102,22 +152,27 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
      */
     @RequestMapping(value = "/username2", method = RequestMethod.GET)
     public Payload getMessagesPageList(@QueryParam("username") @DefaultValue("username=侯圣燊") String username,
-                                       @QueryParam("page")int page, @QueryParam("size")int size,
-                                       @QueryParam("shopname") @DefaultValue("shopname=单车") String shopname) {
+                                       @QueryParam("page") int page, @QueryParam("size") int size,
+                                       @QueryParam("shopname") @DefaultValue("shopname=单车") String shopname,
+                                       @QueryParam("category") @DefaultValue("shopname=运动") String category) {
         List<Order> list = new ArrayList();
-        if(!StringUtils.isEmpty(shopname) && StringUtils.isEmpty(username)){
+        if (!StringUtils.isEmpty(shopname) && StringUtils.isEmpty(username) && StringUtils.isEmpty(category)) {
             list = orderRepository.findByShopname(shopname);
-        }else if(!StringUtils.isEmpty(username) && StringUtils.isEmpty(shopname)){
+        } else if (!StringUtils.isEmpty(username) && StringUtils.isEmpty(shopname) && StringUtils.isEmpty(category)) {
             list = orderRepository.findByUsername(username);
+        } else if (!StringUtils.isEmpty(category) && StringUtils.isEmpty(username) && StringUtils.isEmpty(shopname)) {
+            list = orderRepository.findByCategory(category);
+        } else {
+            logger.info("url出错");
         }
         PageDto pageDto = new PageDto();
         pageDto.setTotalElements(list.size());
         pageDto.setSize(size);
 
-        if(list.size()%size==0){
-            pageDto.setTotalPages(list.size()/size);
-        }else {
-            pageDto.setTotalPages(list.size()/size+1);
+        if (list.size() % size == 0) {
+            pageDto.setTotalPages(list.size() / size);
+        } else {
+            pageDto.setTotalPages(list.size() / size + 1);
         }
        /*
         page,size(1,5)
@@ -126,16 +181,17 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
         (5,10)
        */
         List<Order> jdbcList = new ArrayList();
-        for( Integer i = 0; i < size; i++){
-              if((page * size + i) >= list.size()){//3*2+2<7?
-                     logger.info("page * size + i = "+(page * size + i));
-              }else {
-                  jdbcList.add(list.get(page * size+i));
-              }
+        for (Integer i = 0; i < size; i++) {
+            if ((page * size + i) >= list.size()) {//3*2+2<7?
+                logger.info("page * size + i = " + (page * size + i));
+            } else {
+                jdbcList.add(list.get(page * size + i));
+            }
         }
         pageDto.setContent(jdbcList);
 
         return new Payload(pageDto);
+
     }
 
     /**
@@ -147,18 +203,18 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
      * @return
      */
     @RequestMapping(value = "/messagesusername", method = RequestMethod.GET)
-    public Payload getOrderPageList2(@QueryParam("username") @DefaultValue("username=侯圣燊") String username, @QueryParam("page")int page, @QueryParam("size")int size) {
+    public Payload getOrderPageList2(@QueryParam("username") @DefaultValue("username=侯圣燊") String username, @QueryParam("page") int page, @QueryParam("size") int size) {
 
-       List<Messages> listmessages = new ArrayList();
+        List<Messages> listmessages = new ArrayList();
 
-       listmessages = messagesRepository.findByUsername(username);
+        listmessages = messagesRepository.findByUsername(username);
         PageDto pageDto = new PageDto();
         pageDto.setTotalElements(listmessages.size());
         pageDto.setSize(size);
-        if(listmessages.size()%size==0){
-            pageDto.setTotalPages(listmessages.size()/size);
-        }else {
-            pageDto.setTotalPages(listmessages.size()/size+1);
+        if (listmessages.size() % size == 0) {
+            pageDto.setTotalPages(listmessages.size() / size);
+        } else {
+            pageDto.setTotalPages(listmessages.size() / size + 1);
         }
 
        /*
@@ -168,25 +224,17 @@ public class DataStatisticsRestServiceImpl implements DataStatisticsRestService 
         (5,10)
        */
         List<Messages> jdbcList = new ArrayList();
-        for( Integer i = 0; i < size; i++){
-            if((page * size + i) >= listmessages.size()){//3*2+2<7?
-                logger.info("page * size + i = "+(page * size + i));
-            }else {
-                jdbcList.add(listmessages.get(page * size+i));
+        for (Integer i = 0; i < size; i++) {
+            if ((page * size + i) >= listmessages.size()) {//3*2+2<7?
+                logger.info("page * size + i = " + (page * size + i));
+            } else {
+                jdbcList.add(listmessages.get(page * size + i));
             }
         }
         pageDto.setContent(jdbcList);
 
         return new Payload(pageDto);
     }
-
-
-
-
-
-
-
-
 
 
     /**

@@ -1,5 +1,8 @@
 package hss.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.security.Timestamp;
@@ -29,8 +32,45 @@ public class Shop implements Serializable {
     @Column(name = "userphne")
     private String userphne;
 
-    @Column(name = "category")
-    private String category;
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    @JsonIgnore
+    private Category category;
+
+    @Transient
+    private Category _category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Category get_category() {
+        return category;
+    }
+
+    public void set_category(Category _category) {
+        this._category = _category;
+    }
+
+    public Integer getCategory_id() {
+        if(category == null){
+            return category_id;
+        } else {
+            return category.getId();
+        }
+    }
+
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
+
+//    @JsonProperty("category_id")
+    @Transient
+    private Integer category_id;
 
     @Column(name = "picture")
     private String picture;
@@ -84,13 +124,7 @@ public class Shop implements Serializable {
         this.userphne = userphne;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public String getPicture() {
         return picture;

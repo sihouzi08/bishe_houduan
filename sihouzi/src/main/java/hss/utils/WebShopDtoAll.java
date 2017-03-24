@@ -1,5 +1,7 @@
 package hss.utils;
 
+import hss.domain.Category;
+
 /**
  * Created by Foreveross on 2016/12/28.
  */
@@ -21,7 +23,7 @@ public class WebShopDtoAll {
     private String userphne;
 
 
-    private String category;
+    private Integer category;
 
 
     private String picture;
@@ -75,10 +77,10 @@ public class WebShopDtoAll {
     }
 
     @ExcelResources(title="学校",order=6)
-    public String getCategory() {
+    public Integer getCategory() {
         return category;
     }
-    public void setCategory(String category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
@@ -130,7 +132,7 @@ public class WebShopDtoAll {
                 '}';
     }
 
-    public WebShopDtoAll(Integer shopid, String shopname, String des, String userName, String userphne, String category, String picture, Integer price, String shop_status, String put_time) {
+    public WebShopDtoAll(Integer shopid, String shopname, String des, String userName, String userphne, Integer category, String picture, Integer price, String shop_status) {
         this.shopid = shopid;
         this.shopname = shopname;
         this.des = des;
@@ -140,6 +142,6 @@ public class WebShopDtoAll {
         this.picture = picture;
         this.price = price;
         this.shop_status = shop_status;
-        this.put_time = put_time;
+
     }
 }
